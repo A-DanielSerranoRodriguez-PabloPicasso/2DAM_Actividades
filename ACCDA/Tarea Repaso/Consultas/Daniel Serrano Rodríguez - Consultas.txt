@@ -1,0 +1,42 @@
+-- 1.  Pedidos del año 1996 que ha realizado cada empleado.
+-- Mostrar el nombre y apellidos del empleado (si puedes, concatenados con un espacio entre medio), 
+-- el id del pedido y la fecha del pedido. Ordena por nombre, apellidos e id pedido.
+
+select concat(e.nombre, ' ', e.apellidos) as 'Nombre_completo', p.id, p.fecha_pedido
+    from pedidos p inner join empleados e on p.empleado_id=e.id
+    order by 'Nombre_completo', p.id;
+
+-- 2. Total de pedidos del año 1996 que ha realizado cada empleado.
+-- Mostrar el nombre y apellidos del empleado (si puedes, concatenados con un espacio entre medio) y
+-- el total de pedidos por empleado. Ordena por nombre, apellidos e id pedido.
+
+select concat(e.nombre, ' ', e.apellidos) as 'Nombre_completo', p.id, count(*)
+    from pedidos p inner join empleados e on p.empleado_id=e.id
+    group by p.empleado_id
+    order by 'Nombre_completo', p.id;
+
+-- 3. De cada pedido mostrar su id, la fecha, el nombre de empleado y la empresa del cliente. 
+-- Muestra sólo los pedidos de febrero del año 1997 y de los clientes de Alemania.
+-- Ordénalo por la fecha del pedido.
+
+select p.id, p.fecha_pedido, e.nombre, c.empresa 
+    from pedidos p inner join empleados e on p.empleado_id=e.id inner join clientes c on p.cliente_id=c.id
+    where month(p.fecha_pedido)=2 and year(p.fecha_pedido)=1997 and c.pais='Alemania'
+    order by p.fecha_pedido;
+
+-- 4. De cada producto muestra su nombre, el precio unidad, la empresa del proveedor y el nombre de la categoría. 
+-- Ordénalo por nombre de producto. Fíltralo por precios entre 30 y 60 euros.
+
+select prod.producto, prod.precio_unidad, prov.empresa, cat.categoria
+    from productos prod inner join proveedores prov on prod.proveedor_id=prov.id inner join categorias cat on prod.categoria_id=cat.id
+    where prod.precio_unidad between 30 and 60
+    order by prod.producto;
+
+-- 5. De cada detalle muestra el id de pedido, el nombre del producto, el precio unidad, la cantidad y el importe.
+-- El importe calcúlalo multiplicando cantidad por precio.
+-- Filtra por los pedidos 10266, 10271 y 10280. Ordénalo por id de pedido.
+
+select det.pedido_id, prod.producto, det.precio_unidad, det.cantidad, ((det.precio_unidad*det.cantidad)*(1-det.descuento)) as 'Importe'
+    from detalles det inner join productos prod on det.producto_id=prod.id
+    where det.pedido_id in (10266,10271,10280)
+    order by det.pedido_id;

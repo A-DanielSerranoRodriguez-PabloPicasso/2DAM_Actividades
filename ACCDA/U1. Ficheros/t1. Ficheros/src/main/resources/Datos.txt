@@ -1,0 +1,5 @@
+EMPRESA,EDAD,NUM_EMPLEADOS
+"Ayuntamiento de Málaga","17","1"
+"Ayuntamiento de Rincón","19","1"
+"Ayuntamiento de Pedro","21","2"
+"Ayuntamiento en la Luna","22","2"
