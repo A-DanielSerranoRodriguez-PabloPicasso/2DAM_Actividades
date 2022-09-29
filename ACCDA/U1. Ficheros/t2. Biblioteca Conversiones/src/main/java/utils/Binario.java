@@ -22,13 +22,15 @@ public class Binario {
 				String ofName = fName.substring(0, fLenght - 4), fExtension = fName.substring(fLenght - 3);
 
 				if (fExtension.equals("dat")) {
-					String linea, ofExtension = ".csv";
+					String linea, ofExtension = ".csv",
+							ofPath = dat.getAbsolutePath().replaceAll(fName, "").replaceAll("DAT", "CSV") + ofName
+									+ ofExtension;
 					ObjectInputStream ois = null;
 					BufferedWriter bw = null;
 					try {
 						try {
 							ois = new ObjectInputStream(new FileInputStream(dat));
-							gen = new File(dat.getAbsolutePath().replaceAll(fName, ofName + ofExtension));
+							gen = new File(ofPath);
 							bw = new BufferedWriter(new FileWriter(gen));
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
@@ -48,10 +50,14 @@ public class Binario {
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
+					} finally {
+						Logger.Log("fichero_Binario_to_CSV", fichero, gen.getAbsolutePath(), true);
 					}
+					return gen;
 				}
 			}
 		}
+		Logger.Log("fichero_Binario_to_CSV", fichero, "X", false);
 		return gen;
 	}
 
@@ -76,8 +82,12 @@ public class Binario {
 				csvOrd = CSV.ordenar_Archivo_CSV(csv.getAbsolutePath());
 				csvOrd.renameTo(new File(csvOrd.getAbsolutePath().replaceAll("temp_", "")));
 				csv.delete();
+
+				Logger.Log("fichero_Binario_to_CSV_ordenado", fichero, csvOrd.getAbsolutePath(), true);
+				return csvOrd;
 			}
 		}
+		Logger.Log("fichero_Binario_to_CSV_ordenado", fichero, "X", false);
 		return csvOrd;
 	}
 
@@ -92,8 +102,12 @@ public class Binario {
 
 				oDat = CSV.fichero_CSV_to_Binario(csvOrd.getAbsolutePath());
 				csvOrd.delete();
+
+				Logger.Log("ordenar_Archivo_Binario", fichero, oDat.getAbsolutePath(), true);
+				return oDat;
 			}
 		}
+		Logger.Log("ordenar_Archivo_Binario", fichero, "X", false);
 		return oDat;
 	}
 }

@@ -23,12 +23,14 @@ public class CSV {
 				String ofName = fName.substring(0, fLenght - 4), fExtension = fName.substring(fLenght - 3);
 
 				if (fExtension.equals("csv")) {
-					String linea, ofExtension = ".dat";
+					String linea, ofExtension = ".dat",
+							ofPath = csv.getAbsolutePath().replaceAll(fName, "").replaceAll("CSV", "DAT") + ofName
+									+ ofExtension;
 					BufferedReader br = null;
 					ObjectOutputStream oos = null;
 					try {
 						try {
-							gen = new File(csv.getAbsolutePath().replaceAll(fName, ofName + ofExtension));
+							gen = new File(ofPath);
 							br = new BufferedReader(new FileReader(csv));
 							oos = new ObjectOutputStream(new FileOutputStream(gen));
 						} catch (FileNotFoundException e) {
@@ -46,10 +48,14 @@ public class CSV {
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
+					} finally {
+						Logger.Log("fichero_CSV_to_Binario", fichero, gen.getAbsolutePath(), true);
 					}
+					return gen;
 				}
 			}
 		}
+		Logger.Log("fichero_CSV_to_Binario", fichero, "X", false);
 		return gen;
 	}
 
@@ -111,10 +117,14 @@ public class CSV {
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
+					} finally {
+						Logger.Log("ordenar_Archivo_CSV", fichero, gen.getAbsolutePath(), true);
 					}
+					return gen;
 				}
 			}
 		}
+		Logger.Log("ordenar_Archivo_CSV", fichero, "X", false);
 		return gen;
 	}
 }
