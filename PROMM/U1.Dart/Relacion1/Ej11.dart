@@ -1,10 +1,6 @@
 import 'dart:io';
 
-abstract class Capacidades {
-  factory Capacidades() {
-    return null;
-  }
-
+mixin Capacidades on Vehiculo {
   void arrancar() {
     print("Arrancando");
     sleep(Duration(seconds: 1));
@@ -32,7 +28,7 @@ abstract class Vehiculo {
   }
 }
 
-class Coche extends Vehiculo {
+class Coche extends Vehiculo with Capacidades {
   Coche(String nombre, String matricula) {
     if (nombre.isEmpty)
       _nombre = getNombre();
@@ -46,7 +42,7 @@ class Coche extends Vehiculo {
   }
 }
 
-class Moto extends Vehiculo {
+class Moto extends Vehiculo with Capacidades {
   Moto(String nombre, String matricula) {
     if (nombre.isEmpty)
       _nombre = getNombre();
@@ -66,4 +62,6 @@ void main(List<String> args) {
 
   print(coche.getNombre() + " " + coche.getMatricula());
   print(moto.getNombre() + " " + moto.getMatricula());
+
+  coche.arrancar();
 }
