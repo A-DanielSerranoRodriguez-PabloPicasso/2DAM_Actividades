@@ -12,118 +12,139 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class CSV {
+	private static final String datExt = ".dat", csvExt = ".csv";
+	private static final String datFolder = "DAT", csvFolder = "CSV";
+
+	/**
+	 * Turns a CSV file to a Binary file with the ".dat" extension
+	 * 
+	 * @param fichero Absolute path of the file
+	 * @return File created or null if "fichero" doesn't exists / has a wrong
+	 *         extension
+	 */
 	public static File fichero_CSV_to_Binario(String fichero) {
 		File csv = new File(fichero), gen = null;
 
+		// Check file exists
 		if (csv.exists()) {
 			String fName = csv.getName();
-			int fLenght = csv.getName().length();
-
-			if (fName.charAt(fLenght - 4) == '.') {
-				String ofName = fName.substring(0, fLenght - 4), fExtension = fName.substring(fLenght - 3);
-
-				if (fExtension.equals("csv")) {
-					String linea, ofExtension = ".dat",
-							ofPath = csv.getAbsolutePath().replaceAll(fName, "").replaceAll("CSV", "DAT") + ofName
-									+ ofExtension;
-					BufferedReader br = null;
-					ObjectOutputStream oos = null;
+			// Check if the extension matches
+			if (fName.endsWith(csvExt)) {
+				String ofName = fName.replaceAll(csvExt, datExt);
+				String linea,
+						// Creates the path for the new file, removing the name, changing the folder
+						// to the correct one and adding the new name with the correct extension
+						ofPath = csv.getAbsolutePath().replaceAll(csvFolder, datFolder).replaceAll(fName, ofName);
+				BufferedReader br = null;
+				ObjectOutputStream oos = null;
+				try {
 					try {
-						try {
-							gen = new File(ofPath);
-							br = new BufferedReader(new FileReader(csv));
-							oos = new ObjectOutputStream(new FileOutputStream(gen));
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						}
-
-						try {
-							while ((linea = br.readLine()) != null) {
-								oos.writeObject((String) linea + "\n");
-							}
-							oos.flush();
-						} finally {
-							oos.close();
-							br.close();
-						}
-					} catch (IOException e) {
+						// Reader for the file and writer for the new file
+						gen = new File(ofPath);
+						br = new BufferedReader(new FileReader(csv));
+						oos = new ObjectOutputStream(new FileOutputStream(gen));
+					} catch (FileNotFoundException e) {
 						e.printStackTrace();
-					} finally {
-						Logger.Log("fichero_CSV_to_Binario", fichero, gen.getAbsolutePath(), true);
 					}
-					return gen;
+
+					try {
+						// Reads the file and writes the lines to the new file
+						while ((linea = br.readLine()) != null) {
+							oos.writeObject((String) linea + "\n");
+						}
+						oos.flush();
+					} finally {
+						oos.close();
+						br.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					Logger.Log("fichero_CSV_to_Binario", fichero, gen.getAbsolutePath(), true);
 				}
+				return gen;
 			}
 		}
+		// If extension doesn't match, or file doesn't exists, failure is logged
 		Logger.Log("fichero_CSV_to_Binario", fichero, "X", false);
 		return gen;
 	}
 
+	/**
+	 * Orders a CSV file
+	 * 
+	 * @param fichero Absolute path of the file
+	 * @return File created or null if "fichero" doesn't exists / has a wrong
+	 *         extension
+	 */
 	public static File ordenar_Archivo_CSV(String fichero) {
 		File csv = new File(fichero), gen = null;
 
+		// Check file exists
 		if (csv.exists()) {
 			String fName = csv.getName();
-			int fLenght = csv.getName().length();
+			// Check if the extension matches
+			if (fName.endsWith(csvExt)) {
+				// Creates the new name, obtaining the original name and appending the new text
+				String ofName = fName.substring(0, fName.lastIndexOf(".")) + "_ord" + csvExt;
+				ArrayList<String> lineas = new ArrayList<>();
+				String linea, categ = "";
+				BufferedReader br = null;
+				int pos = 0;
 
-			if (fName.charAt(fLenght - 4) == '.') {
-				String ofName = fName.substring(0, fLenght - 4), fExtension = fName.substring(fLenght - 3);
-
-				if (fExtension.equals("csv")) {
-					ArrayList<String> lineas = new ArrayList<>();
-					String linea, categ = "";
-					int pos = 0;
-					BufferedReader br = null;
-
+				try {
 					try {
-						try {
-							br = new BufferedReader(new FileReader(csv));
+						// Reader for the file
+						br = new BufferedReader(new FileReader(csv));
 
-							while ((linea = br.readLine()) != null) {
-								if (pos == 0) {
-									categ = linea;
-									pos++;
-								} else
-									lineas.add(linea);
-							}
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} finally {
-							br.close();
+						// We save the lines, the first one in its own String.
+						while ((linea = br.readLine()) != null) {
+							if (pos == 0) {
+								categ = linea;
+								pos++;
+							} else
+								lineas.add(linea);
 						}
-					} catch (IOException e) {
+					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					} finally {
-						lineas.sort((o1, o2) -> o1.compareTo(o2));
+						br.close();
 					}
-
-					BufferedWriter bw = null;
-
-					try {
-						try {
-							gen = new File(csv.getAbsolutePath().replaceAll(fName, ofName + "_ord." + fExtension));
-							bw = new BufferedWriter(new FileWriter(gen));
-
-							bw.write(categ + "\n");
-							for (String l : lineas) {
-								bw.write(l + "\n");
-							}
-
-							bw.flush();
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} finally {
-							bw.close();
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					} finally {
-						Logger.Log("ordenar_Archivo_CSV", fichero, gen.getAbsolutePath(), true);
-					}
-					return gen;
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					// We order the list
+					lineas.sort((o1, o2) -> o1.compareTo(o2));
 				}
+
+				BufferedWriter bw = null;
+
+				try {
+					try {
+						// Writer for the new file
+						gen = new File(csv.getAbsolutePath().replaceAll(fName, ofName));
+						bw = new BufferedWriter(new FileWriter(gen));
+
+						bw.write(categ + "\n");
+						for (String l : lineas) {
+							bw.write(l + "\n");
+						}
+
+						bw.flush();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} finally {
+						bw.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					Logger.Log("ordenar_Archivo_CSV", fichero, gen.getAbsolutePath(), true);
+				}
+				return gen;
 			}
 		}
+		// If extension doesn't match, or file doesn't exists, failure is logged
 		Logger.Log("ordenar_Archivo_CSV", fichero, "X", false);
 		return gen;
 	}
