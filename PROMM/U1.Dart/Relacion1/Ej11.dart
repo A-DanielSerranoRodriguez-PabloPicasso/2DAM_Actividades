@@ -1,6 +1,6 @@
 import 'dart:io';
 
-mixin Capacidades on Vehiculo {
+abstract class Capacidades {
   void arrancar() {
     print("Arrancando");
     sleep(Duration(seconds: 1));
