@@ -68,7 +68,6 @@ public class MainWindow {
 	private Component hgFilesHB;
 	private Component hs2FilesHB2;
 	private Box hbFiles2_1;
-	private Component hgMisc;
 	private Component vg2MiscVB;
 	private Box hbMiscVBcsv;
 	private Component vg3MiscVB;
@@ -160,7 +159,7 @@ public class MainWindow {
 		hs1FilesHB2 = Box.createHorizontalStrut(20);
 		hbFiles2.add(hs1FilesHB2);
 		// Remove <String> to be able to show it in Window Builder
-		fileList = new JList<String>(filesName);
+		fileList = new JList(filesName);
 		fileList.setLayoutOrientation(JList.VERTICAL);
 
 		listScroll = new JScrollPane();
@@ -250,9 +249,6 @@ public class MainWindow {
 
 		hsMisc = Box.createHorizontalStrut(30);
 		misc.add(hsMisc);
-
-		hgMisc = Box.createHorizontalGlue();
-		misc.add(hgMisc);
 
 		fileChooser = new JFileChooser();
 		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Archivo Binario", "dat"));
