@@ -20,7 +20,7 @@ public class DescifraAES {
 	 * @param passwd  String
 	 * @return String. Null in case of failure
 	 */
-	public static String descifrar(String codedMessage, String password) {
+	public static String decrypt(String codedMessage, String password) {
 		try {
 			// The cipher is initialized in decryption mode, using a SecretKey generated
 			// with the password

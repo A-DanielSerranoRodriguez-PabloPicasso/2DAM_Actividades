@@ -9,7 +9,7 @@ public class MainApp {
 		String textoCifrado = CifraAES.encrypt(args[0], args[1]);
 		System.out.println(textoCifrado);
 
-		String textoDescifrado = DescifraAES.descifrar(textoCifrado, args[1]);
+		String textoDescifrado = DescifraAES.decrypt(textoCifrado, args[1]);
 		System.out.println(textoDescifrado);
 	}
 }
