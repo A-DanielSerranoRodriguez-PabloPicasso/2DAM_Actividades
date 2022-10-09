@@ -2,7 +2,6 @@ package models;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Sorter {
@@ -36,58 +35,82 @@ public class Sorter {
 //	}
 
 	public static void main(String[] args) {
-		// TODO replantear, args tiene todos los nuemros como tal, no un String que
-		// parece un array. Mi puta vida loco, pero creo que puede funcionar
-		String numeros = args[0], finales = "";
-
-		for (int i = 1; i < numeros.length() - 1; i++) {
-			finales += numeros.charAt(i);
+		for (int i = 0; i < args.length; i++) {
+			System.out.println(args[i]);
 		}
+		int[] nums = new int[args.length];
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = Integer.parseInt(args[i]);
+		}
+		System.out.println();
+		System.out.println(sorter(nums));
+	}
 
-		String[] allNume = finales.split(",");
-		if (allNume.length > 1) {
-			ArrayList<Integer> primero = new ArrayList<>(), segundo = new ArrayList<>(), resultado = new ArrayList<>();
-			int pivote = Integer.parseInt(allNume[0].strip());
-			String prim, seg;
+	public static String sorter(int[] nums) {
+		String uno = "", dos = "", fin, piv;
 
-			for (int i = 1; i < allNume.length; i++) {
-				int num = Integer.parseInt(allNume[i].strip());
+		if (nums.length > 1) {
+			int pivote = nums[0];
+			ArrayList<Integer> menores = new ArrayList<>(), mayores = new ArrayList<>();
+
+			for (int i = 1; i < nums.length; i++) {
+				int num = nums[i];
 				if (num < pivote)
-					primero.add(num);
+					menores.add(num);
 				else
-					segundo.add(num);
+					mayores.add(num);
 			}
-			primero.add(pivote);
 
-			if (primero.size() > 1) {
-				ProcessBuilder pb = new ProcessBuilder("java", "-cp", "./bin", "models.Sorter", primero.toString());
+//			menores.add(pivote);
+			piv = pivote + "";
+
+			if (menores.size() >= 1) {
+				String[] argumentos = new String[menores.size() + 4];
+				argumentos[0] = "java";
+				argumentos[1] = "-cp";
+				argumentos[2] = "./bin";
+				argumentos[3] = "models.Sorter";
+				for (int i = 4; i < argumentos.length; i++) {
+					argumentos[i] = menores.get(i - 4).toString();
+				}
+				ProcessBuilder pb = new ProcessBuilder(argumentos);
 				try {
+					String linea;
 					Process p = pb.start();
 					BufferedReader br = p.inputReader();
-					String linea;
+					while ((linea = br.readLine()) != null)
+						uno += linea + " ";
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-//				prim = main(primero.toString());
-			}
+			} else
+				uno = menores.get(0).toString();
 
-			if (segundo.size() > 1) {
-				ProcessBuilder pb = new ProcessBuilder("java", "-cp", "./bin", "models.Sorter", segundo.toString());
+			if (mayores.size() >= 1) {
+				String[] argumentos = new String[mayores.size() + 4];
+				argumentos[0] = "java";
+				argumentos[1] = "-cp";
+				argumentos[2] = "./bin";
+				argumentos[3] = "models.Sorter";
+				for (int i = 4; i < argumentos.length; i++) {
+					argumentos[i] = mayores.get(i - 4).toString();
+				}
+				ProcessBuilder pb = new ProcessBuilder(argumentos);
 				try {
-					Process p = pb.start();
-					BufferedReader br = p.inputReader(), br2 = p.errorReader();
 					String linea;
+					Process p = pb.start();
+					BufferedReader br = p.inputReader();
+					while ((linea = br.readLine()) != null)
+						dos += linea + " ";
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-//				seg = sorter(segundo);
-			}
+			} else
+				dos = menores.get(0).toString();
 
-			resultado.addAll(primero);
-			resultado.addAll(segundo);
-			for (Integer num : resultado) {
-				System.out.println(num);
-			}
+			return uno + dos;
 		}
+
+		return "";
 	}
 }
