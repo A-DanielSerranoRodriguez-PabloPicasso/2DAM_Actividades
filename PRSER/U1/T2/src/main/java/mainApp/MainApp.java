@@ -25,19 +25,21 @@ public class MainApp {
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-		
+
 		testeo.add(6);
 		testeo.add(3);
 		testeo.add(27);
 		testeo.add(8);
 		testeo.add(7);
-		
+
 		System.out.println("\n\n");
 		int[] lista = new int[testeo.size()];
 		for (int i = 0; i < lista.length; i++) {
 			lista[i] = testeo.get(i);
 		}
-		String eo = Sorter.sorter(testeo);
+		String eo = null;
+		String[] array = { testeo.toString() };
+		Sorter.main(array);
 //		for (Integer num : testeo) {
 //			System.out.println(num);
 //		}
