@@ -1,0 +1,24 @@
+1. Introdución a la gestión empresarial
+    Procesos de negocio, datos y flujo
+    a. Evolución de la informática de gestión empresarial
+    b. Organización de una empresa y sus relaciones externas
+
+2. ERP-CRM
+    a. Revisión de ERP actuales
+    b. Características de los ERP
+    c. Ventajas e inconvenientes de los ERP
+    d. Concepto de CRM
+    e. CRM actuales
+    f. Características de los CRM
+    g. Ventajas e inconvenientes de los CRM
+    h. Requisitos de los sistemas ERP-CRM
+
+3. Arquitectura de un sistema ERP-CRM
+    a. Estructura funcional de un ERP
+    b. Extensiones referentes al ERP
+
+4. Software compatible
+    a. SO libres o propietarios
+    b. Sistemas gestores de BBDD
+    c. Configuración de la plataforma
+    d. Verificación de la instalación y configuración de los SO y gestión de datos
