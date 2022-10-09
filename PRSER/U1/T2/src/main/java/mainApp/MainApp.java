@@ -15,21 +15,32 @@ public class MainApp {
 		ArrayList<Integer> testeo = new ArrayList<>();
 		String linea;
 
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/main/resources/datos.txt")));
-			while((linea = br.readLine()) != null && !linea.isBlank()) {
-				testeo.add(Integer.parseInt(linea));
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(new File("src/main/resources/datos.txt")));
+//			while((linea = br.readLine()) != null && !linea.isBlank()) {
+//				testeo.add(Integer.parseInt(linea));
+//			}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		testeo.add(6);
+		testeo.add(3);
+		testeo.add(27);
+		testeo.add(8);
+		testeo.add(7);
+		
+		System.out.println("\n\n");
+		int[] lista = new int[testeo.size()];
+		for (int i = 0; i < lista.length; i++) {
+			lista[i] = testeo.get(i);
 		}
-
-		Sorter.sorter(testeo);
-		for (Integer num : testeo) {
-			System.out.println(num);
-		}
-
+		String eo = Sorter.sorter(testeo);
+//		for (Integer num : testeo) {
+//			System.out.println(num);
+//		}
+		System.out.println(eo);
 	}
 }
