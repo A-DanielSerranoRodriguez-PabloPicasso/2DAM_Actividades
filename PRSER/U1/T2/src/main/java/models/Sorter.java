@@ -47,7 +47,7 @@ public class Sorter {
 	}
 
 	public static String sorter(int[] nums) {
-		String uno = "", dos = "", fin, piv;
+		String uno = "", dos = "";
 
 		if (nums.length > 1) {
 			int pivote = nums[0];
@@ -61,8 +61,7 @@ public class Sorter {
 					mayores.add(num);
 			}
 
-//			menores.add(pivote);
-			piv = pivote + "";
+			menores.add(pivote);
 
 			if (menores.size() >= 1) {
 				String[] argumentos = new String[menores.size() + 4];
@@ -79,12 +78,12 @@ public class Sorter {
 					Process p = pb.start();
 					BufferedReader br = p.inputReader();
 					while ((linea = br.readLine()) != null)
-						uno += linea + " ";
+						uno = linea;
+					p.destroy();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else
-				uno = menores.get(0).toString();
+			}
 
 			if (mayores.size() >= 1) {
 				String[] argumentos = new String[mayores.size() + 4];
@@ -101,16 +100,16 @@ public class Sorter {
 					Process p = pb.start();
 					BufferedReader br = p.inputReader();
 					while ((linea = br.readLine()) != null)
-						dos += linea + " ";
+						dos = linea;
+					p.destroy();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			} else
-				dos = menores.get(0).toString();
+			}
 
-			return uno + dos;
+			return uno + " " + dos;
 		}
 
-		return "";
+		return nums[0] + "";
 	}
 }
