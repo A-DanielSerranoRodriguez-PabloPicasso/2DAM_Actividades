@@ -1,0 +1,91 @@
+ID: 1, Codigo: ALFKI, CP: 12209
+ID: 2, Codigo: ANATR, CP: 05021
+ID: 3, Codigo: ANTON, CP: 05023
+ID: 4, Codigo: AROUT, CP: WA1 1DP
+ID: 5, Codigo: BERGS, CP: S-958 22
+ID: 6, Codigo: BLAUS, CP: 68306
+ID: 7, Codigo: BLONP, CP: 67000
+ID: 8, Codigo: BOLID, CP: 28023
+ID: 9, Codigo: BONAP, CP: 13008
+ID: 10, Codigo: BOTTM, CP: T2F 8M4
+ID: 11, Codigo: BSBEV, CP: EC2 5NT
+ID: 12, Codigo: CACTU, CP: 1010
+ID: 13, Codigo: CENTC, CP: 05022
+ID: 14, Codigo: COMMI, CP: 05432-043
+ID: 15, Codigo: CONSH, CP: WX1 6LT
+ID: 16, Codigo: CHOPS, CP: 3012
+ID: 17, Codigo: DRACD, CP: 52066
+ID: 18, Codigo: DUMON, CP: 44000
+ID: 19, Codigo: EASTC, CP: WX3 6FW
+ID: 20, Codigo: ERNSH, CP: 8010
+ID: 21, Codigo: FAMIA, CP: 05442-030
+ID: 22, Codigo: FISSA, CP: 28034
+ID: 23, Codigo: FOLIG, CP: 59000
+ID: 24, Codigo: FOLKO, CP: S-844 67
+ID: 25, Codigo: FRANK, CP: 80805
+ID: 26, Codigo: FRANR, CP: 44000
+ID: 27, Codigo: FRANS, CP: 10100
+ID: 28, Codigo: FURIB, CP: 1675
+ID: 29, Codigo: GALED, CP: 08022
+ID: 30, Codigo: GODOS, CP: 41101
+ID: 31, Codigo: GOURL, CP: 04876-786
+ID: 32, Codigo: GREAL, CP: 97403
+ID: 33, Codigo: GROSR, CP: 1081
+ID: 34, Codigo: HANAR, CP: 05454-876
+ID: 35, Codigo: HILAA, CP: 5022
+ID: 36, Codigo: HUNGC, CP: 97827
+ID: 37, Codigo: HUNGO, CP: null
+ID: 38, Codigo: ISLAT, CP: PO31 7PJ
+ID: 39, Codigo: KOENE, CP: 14776
+ID: 40, Codigo: LACOR, CP: 78000
+ID: 41, Codigo: LAMAI, CP: 31000
+ID: 42, Codigo: LAUGB, CP: V3F 2K1
+ID: 43, Codigo: LAZYK, CP: 99362
+ID: 44, Codigo: LEHMS, CP: 60528
+ID: 45, Codigo: LETSS, CP: 94117
+ID: 46, Codigo: LILAS, CP: 3508
+ID: 47, Codigo: LINOD, CP: 4980
+ID: 48, Codigo: LONEP, CP: 97219
+ID: 49, Codigo: MAGAA, CP: 24100
+ID: 50, Codigo: MAISD, CP: B-1180
+ID: 51, Codigo: MEREP, CP: H1J 1C3
+ID: 52, Codigo: MORGK, CP: 04179
+ID: 53, Codigo: NORTS, CP: SW7 1RZ
+ID: 54, Codigo: OCEAN, CP: 1010
+ID: 55, Codigo: OLDWO, CP: 99508
+ID: 56, Codigo: OTTIK, CP: 50739
+ID: 57, Codigo: PARIS, CP: 75012
+ID: 58, Codigo: PERIC, CP: 05033
+ID: 59, Codigo: PICCO, CP: 5020
+ID: 60, Codigo: PRINI, CP: 1756
+ID: 61, Codigo: QUEDE, CP: 02389-673
+ID: 62, Codigo: QUEEN, CP: 05487-020
+ID: 63, Codigo: QUICK, CP: 01307
+ID: 64, Codigo: RANCH, CP: 1010
+ID: 65, Codigo: RATTC, CP: 87110
+ID: 66, Codigo: REGGC, CP: 42100
+ID: 67, Codigo: RICAR, CP: 02389-890
+ID: 68, Codigo: RICSU, CP: 1203
+ID: 69, Codigo: ROMEY, CP: 28001
+ID: 70, Codigo: SANTG, CP: 4110
+ID: 71, Codigo: SAVEA, CP: 83720
+ID: 72, Codigo: SEVES, CP: OX15 4NB
+ID: 73, Codigo: SIMOB, CP: 1734
+ID: 74, Codigo: SPECD, CP: 75016
+ID: 75, Codigo: SPLIR, CP: 82520
+ID: 76, Codigo: SUPRD, CP: B-6000
+ID: 77, Codigo: THEBI, CP: 97201
+ID: 78, Codigo: THECR, CP: 59801
+ID: 79, Codigo: TOMSP, CP: 44087
+ID: 80, Codigo: TORTU, CP: 05033
+ID: 81, Codigo: TRADH, CP: 05634-030
+ID: 82, Codigo: TRAIH, CP: 98034
+ID: 83, Codigo: VAFFE, CP: 8200
+ID: 84, Codigo: VICTE, CP: 69004
+ID: 85, Codigo: VINET, CP: 51100
+ID: 86, Codigo: WANDK, CP: 70563
+ID: 87, Codigo: WARTH, CP: 90110
+ID: 88, Codigo: WELLI, CP: 08737-363
+ID: 89, Codigo: WHITC, CP: 98128
+ID: 90, Codigo: WILMK, CP: 21240
+ID: 91, Codigo: WOLZA, CP: 01-012
