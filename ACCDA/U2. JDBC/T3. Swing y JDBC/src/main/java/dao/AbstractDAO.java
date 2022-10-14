@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -26,7 +27,7 @@ public abstract class AbstractDAO {
 	}
 
 	protected Statement getStatement() throws SQLException {
-		return CONN.createStatement();
+		return CONN.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 	}
 
 	protected void closeConn() throws SQLException {

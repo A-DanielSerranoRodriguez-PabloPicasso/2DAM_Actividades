@@ -16,7 +16,8 @@ import javax.swing.JTextField;
 import dao.FilmDAO;
 
 public class FilmViewer {
-	private int startPoint = 0;
+	private int startPoint = 0, safeCount = 0;
+	private final int FILMS_AMOUNT = 20;
 	private ResultSet films = null;
 
 	private JFrame frame;
@@ -103,61 +104,61 @@ public class FilmViewer {
 		mainPanel.add(lblLastUpdt);
 
 		txfTitle = new JTextField();
-		txfTitle.setEnabled(false);
+		txfTitle.setEditable(false);
 		txfTitle.setBounds(43, 63, 269, 20);
 		mainPanel.add(txfTitle);
 		txfTitle.setColumns(10);
 
 		txfReleYear = new JTextField();
-		txfReleYear.setEnabled(false);
+		txfReleYear.setEditable(false);
 		txfReleYear.setColumns(10);
 		txfReleYear.setBounds(395, 63, 86, 20);
 		mainPanel.add(txfReleYear);
 
 		txfLength = new JTextField();
-		txfLength.setEnabled(false);
+		txfLength.setEditable(false);
 		txfLength.setColumns(10);
 		txfLength.setBounds(568, 63, 86, 20);
 		mainPanel.add(txfLength);
 
 		txfRating = new JTextField();
-		txfRating.setEnabled(false);
+		txfRating.setEditable(false);
 		txfRating.setColumns(10);
 		txfRating.setBounds(43, 161, 86, 20);
 		mainPanel.add(txfRating);
 
 		txfLastUpdate = new JTextField();
-		txfLastUpdate.setEnabled(false);
+		txfLastUpdate.setEditable(false);
 		txfLastUpdate.setColumns(10);
 		txfLastUpdate.setBounds(226, 161, 111, 20);
 		mainPanel.add(txfLastUpdate);
 
 		txfSpecFeat = new JTextField();
-		txfSpecFeat.setEnabled(false);
+		txfSpecFeat.setEditable(false);
 		txfSpecFeat.setColumns(10);
 		txfSpecFeat.setBounds(395, 161, 259, 20);
 		mainPanel.add(txfSpecFeat);
 
 		txfRentDur = new JTextField();
-		txfRentDur.setEnabled(false);
+		txfRentDur.setEditable(false);
 		txfRentDur.setColumns(10);
 		txfRentDur.setBounds(43, 251, 86, 20);
 		mainPanel.add(txfRentDur);
 
 		txfRentRate = new JTextField();
-		txfRentRate.setEnabled(false);
+		txfRentRate.setEditable(false);
 		txfRentRate.setColumns(10);
 		txfRentRate.setBounds(226, 251, 86, 20);
 		mainPanel.add(txfRentRate);
 
 		txfReplCost = new JTextField();
-		txfReplCost.setEnabled(false);
+		txfReplCost.setEditable(false);
 		txfReplCost.setColumns(10);
 		txfReplCost.setBounds(395, 251, 86, 20);
 		mainPanel.add(txfReplCost);
 
 		txaDescr = new JTextArea();
-		txaDescr.setEnabled(false);
+		txaDescr.setEditable(false);
 		txaDescr.setBounds(43, 344, 873, 167);
 		mainPanel.add(txaDescr);
 
@@ -167,6 +168,7 @@ public class FilmViewer {
 
 		btnPrev = new JButton("Anterior");
 		btnPrev.setBounds(226, 591, 89, 23);
+		btnPrev.setEnabled(false);
 		mainPanel.add(btnPrev);
 
 		btnNext = new JButton("Siguiente");
@@ -201,12 +203,37 @@ public class FilmViewer {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					films.next();
+					safeCount++;
+					btnPrev.setEnabled(true);
+					if (films.isAfterLast()) {
+						startPoint += FILMS_AMOUNT;
+						getFilms();
+					}
 					fillText();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
+
+		btnPrev.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (safeCount == 1)
+						btnPrev.setEnabled(false);
+					films.previous();
+					safeCount--;
+					if (films.isBeforeFirst()) {
+						startPoint -= FILMS_AMOUNT;
+						getFilms();
+					}
+					fillText();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNew.setVisible(false);
@@ -266,15 +293,15 @@ public class FilmViewer {
 	}
 
 	private void switchEditText() {
-		txfTitle.setEnabled(!txfTitle.isEnabled());
-		txfReleYear.setEnabled(!txfReleYear.isEnabled());
-		txfLength.setEnabled(!txfLength.isEnabled());
-		txfRating.setEnabled(!txfRating.isEnabled());
-		txfLastUpdate.setEnabled(!txfLastUpdate.isEnabled());
-		txfSpecFeat.setEnabled(!txfSpecFeat.isEnabled());
-		txfRentDur.setEnabled(!txfRentDur.isEnabled());
-		txfRentRate.setEnabled(!txfRentRate.isEnabled());
-		txfReplCost.setEnabled(!txfReplCost.isEnabled());
-		txaDescr.setEnabled(!txaDescr.isEnabled());
+		txfTitle.setEditable(!txfTitle.isEditable());
+		txfReleYear.setEditable(!txfReleYear.isEditable());
+		txfLength.setEditable(!txfLength.isEditable());
+		txfRating.setEditable(!txfRating.isEditable());
+		txfLastUpdate.setEditable(!txfLastUpdate.isEditable());
+		txfSpecFeat.setEditable(!txfSpecFeat.isEditable());
+		txfRentDur.setEditable(!txfRentDur.isEditable());
+		txfRentRate.setEditable(!txfRentRate.isEditable());
+		txfReplCost.setEditable(!txfReplCost.isEditable());
+		txaDescr.setEnabled(!txaDescr.isEditable());
 	}
 }
