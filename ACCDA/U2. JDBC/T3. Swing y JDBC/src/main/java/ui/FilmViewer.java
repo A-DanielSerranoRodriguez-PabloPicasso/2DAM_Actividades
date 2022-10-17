@@ -13,21 +13,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import dao.ActorDAO;
 import dao.FilmDAO;
 
 public class FilmViewer {
-	private int startPoint = 0, safeCount = 0;
-	private final int FILMS_AMOUNT = 20;
 	private ResultSet films = null;
 
 	private JFrame frame;
 	private JPanel mainPanel;
 
 	private JLabel lblTitle, lblDescr, lblReleYear, lblRentDur, lblRentRate, lblLength, lblReplCost, lblRating,
-			lblSpecFeat, lblLastUpdt;
+			lblSpecFeat, lblLastUpdt, lblActors;
 	private JTextField txfTitle, txfReleYear, txfLength, txfRating, txfLastUpdate, txfSpecFeat, txfRentDur, txfRentRate,
 			txfReplCost;
-	private JTextArea txaDescr;
+	private JTextArea txaDescr, txaActors;
 	private JButton btnFirst, btnPrev, btnNext, btnLast, btnEdit, btnNew, btnSave, btnCancel;
 
 	/**
@@ -68,7 +67,7 @@ public class FilmViewer {
 		mainPanel.add(lblTitle);
 
 		lblDescr = new JLabel("Descripcion");
-		lblDescr.setBounds(43, 319, 86, 14);
+		lblDescr.setBounds(43, 383, 86, 14);
 		mainPanel.add(lblDescr);
 
 		lblReleYear = new JLabel("Año lanzamiento");
@@ -76,11 +75,11 @@ public class FilmViewer {
 		mainPanel.add(lblReleYear);
 
 		lblRentDur = new JLabel("Duración de alquiler");
-		lblRentDur.setBounds(43, 226, 162, 14);
+		lblRentDur.setBounds(43, 183, 162, 14);
 		mainPanel.add(lblRentDur);
 
 		lblRentRate = new JLabel("Coste de alquiler");
-		lblRentRate.setBounds(226, 226, 111, 14);
+		lblRentRate.setBounds(193, 183, 111, 14);
 		mainPanel.add(lblRentRate);
 
 		lblLength = new JLabel("Duración");
@@ -88,24 +87,28 @@ public class FilmViewer {
 		mainPanel.add(lblLength);
 
 		lblReplCost = new JLabel("Coste de remplazo");
-		lblReplCost.setBounds(395, 226, 137, 14);
+		lblReplCost.setBounds(395, 183, 137, 14);
 		mainPanel.add(lblReplCost);
 
 		lblRating = new JLabel("Clasificación de edad");
-		lblRating.setBounds(43, 136, 121, 14);
+		lblRating.setBounds(43, 107, 121, 14);
 		mainPanel.add(lblRating);
 
 		lblSpecFeat = new JLabel("Características especiales");
-		lblSpecFeat.setBounds(395, 136, 175, 14);
+		lblSpecFeat.setBounds(395, 107, 175, 14);
 		mainPanel.add(lblSpecFeat);
 
 		lblLastUpdt = new JLabel("Última actualización");
-		lblLastUpdt.setBounds(226, 136, 132, 14);
+		lblLastUpdt.setBounds(193, 107, 132, 14);
 		mainPanel.add(lblLastUpdt);
+
+		lblActors = new JLabel("Actores");
+		lblActors.setBounds(43, 263, 46, 14);
+		mainPanel.add(lblActors);
 
 		txfTitle = new JTextField();
 		txfTitle.setEditable(false);
-		txfTitle.setBounds(43, 63, 269, 20);
+		txfTitle.setBounds(43, 63, 309, 20);
 		mainPanel.add(txfTitle);
 		txfTitle.setColumns(10);
 
@@ -124,46 +127,54 @@ public class FilmViewer {
 		txfRating = new JTextField();
 		txfRating.setEditable(false);
 		txfRating.setColumns(10);
-		txfRating.setBounds(43, 161, 86, 20);
+		txfRating.setBounds(43, 132, 86, 20);
 		mainPanel.add(txfRating);
 
 		txfLastUpdate = new JTextField();
 		txfLastUpdate.setEditable(false);
 		txfLastUpdate.setColumns(10);
-		txfLastUpdate.setBounds(226, 161, 111, 20);
+		txfLastUpdate.setBounds(193, 132, 159, 20);
 		mainPanel.add(txfLastUpdate);
 
 		txfSpecFeat = new JTextField();
 		txfSpecFeat.setEditable(false);
 		txfSpecFeat.setColumns(10);
-		txfSpecFeat.setBounds(395, 161, 259, 20);
+		txfSpecFeat.setBounds(395, 132, 313, 20);
 		mainPanel.add(txfSpecFeat);
 
 		txfRentDur = new JTextField();
 		txfRentDur.setEditable(false);
 		txfRentDur.setColumns(10);
-		txfRentDur.setBounds(43, 251, 86, 20);
+		txfRentDur.setBounds(43, 208, 86, 20);
 		mainPanel.add(txfRentDur);
 
 		txfRentRate = new JTextField();
 		txfRentRate.setEditable(false);
 		txfRentRate.setColumns(10);
-		txfRentRate.setBounds(226, 251, 86, 20);
+		txfRentRate.setBounds(193, 208, 86, 20);
 		mainPanel.add(txfRentRate);
 
 		txfReplCost = new JTextField();
 		txfReplCost.setEditable(false);
 		txfReplCost.setColumns(10);
-		txfReplCost.setBounds(395, 251, 86, 20);
+		txfReplCost.setBounds(395, 208, 86, 20);
 		mainPanel.add(txfReplCost);
 
+		txaActors = new JTextArea();
+		txaActors.setLineWrap(true);
+		txaActors.setEditable(false);
+		txaActors.setBounds(43, 288, 873, 64);
+		mainPanel.add(txaActors);
+
 		txaDescr = new JTextArea();
+		txaDescr.setLineWrap(true);
 		txaDescr.setEditable(false);
-		txaDescr.setBounds(43, 344, 873, 167);
+		txaDescr.setBounds(43, 408, 873, 103);
 		mainPanel.add(txaDescr);
 
 		btnFirst = new JButton("Primero");
 		btnFirst.setBounds(43, 591, 89, 23);
+		btnFirst.setEnabled(false);
 		mainPanel.add(btnFirst);
 
 		btnPrev = new JButton("Anterior");
@@ -184,31 +195,29 @@ public class FilmViewer {
 		mainPanel.add(btnEdit);
 
 		btnNew = new JButton("Nueva película");
-		btnNew.setBounds(795, 160, 121, 23);
+		btnNew.setBounds(795, 131, 121, 23);
 		mainPanel.add(btnNew);
 
 		btnSave = new JButton("Guardar");
 		btnSave.setVisible(false);
-		btnSave.setBounds(795, 250, 121, 23);
+		btnSave.setBounds(795, 207, 121, 23);
 		mainPanel.add(btnSave);
 
 		btnCancel = new JButton("Cancelar");
 		btnCancel.setVisible(false);
-		btnCancel.setBounds(587, 250, 121, 23);
+		btnCancel.setBounds(587, 207, 121, 23);
 		mainPanel.add(btnCancel);
 	}
 
 	private void setUIbehaviour() {
-		btnNext.addActionListener(new ActionListener() {
+		btnFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					films.next();
-					safeCount++;
-					btnPrev.setEnabled(true);
-					if (films.isAfterLast()) {
-						startPoint += FILMS_AMOUNT;
-						getFilms();
-					}
+					films.first();
+					btnFirst.setEnabled(false);
+					btnPrev.setEnabled(btnFirst.isEnabled());
+					btnLast.setEnabled(true);
+					btnNext.setEnabled(btnLast.isEnabled());
 					fillText();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -219,14 +228,45 @@ public class FilmViewer {
 		btnPrev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (safeCount == 1)
-						btnPrev.setEnabled(false);
 					films.previous();
-					safeCount--;
-					if (films.isBeforeFirst()) {
-						startPoint -= FILMS_AMOUNT;
-						getFilms();
+					btnNext.setEnabled(true);
+					btnLast.setEnabled(true);
+					if (films.isFirst()) {
+						btnFirst.setEnabled(false);
+						btnPrev.setEnabled(false);
 					}
+					fillText();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					films.next();
+					btnPrev.setEnabled(true);
+					btnFirst.setEnabled(true);
+					if (films.isLast()) {
+						btnLast.setEnabled(false);
+						btnNext.setEnabled(false);
+					}
+					fillText();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		btnLast.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					films.last();
+					btnFirst.setEnabled(true);
+					btnPrev.setEnabled(btnFirst.isEnabled());
+					btnLast.setEnabled(false);
+					btnNext.setEnabled(btnLast.isEnabled());
 					fillText();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -237,7 +277,8 @@ public class FilmViewer {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNew.setVisible(false);
-				switchButtons();
+				switchButtonsEdit();
+				switchButtonsMovement();
 				switchEditText();
 			}
 		});
@@ -245,7 +286,9 @@ public class FilmViewer {
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEdit.setVisible(false);
-				switchButtons();
+				clearText();
+				switchButtonsEdit();
+				switchButtonsMovement();
 				switchEditText();
 			}
 		});
@@ -254,8 +297,17 @@ public class FilmViewer {
 			public void actionPerformed(ActionEvent e) {
 				btnEdit.setVisible(true);
 				btnNew.setVisible(true);
-				switchButtons();
+				switchButtonsEdit();
+				switchButtonsMovement();
 				switchEditText();
+				getFilms();
+				try {
+					fillText();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				btnPrev.setEnabled(false);
+				btnFirst.setEnabled(false);
 			}
 		});
 	}
@@ -264,7 +316,7 @@ public class FilmViewer {
 		FilmDAO fdao = null;
 		try {
 			fdao = new FilmDAO();
-			films = fdao.getFilms(startPoint);
+			films = fdao.getFilms();
 			films.next();
 		} catch (SQLException e) {
 			txaDescr.setText("Error de conexión a la base de datos");
@@ -273,6 +325,9 @@ public class FilmViewer {
 	}
 
 	private void fillText() throws SQLException {
+		ActorDAO aDao = new ActorDAO();
+		ResultSet actors = aDao.getFilms(films.getInt("film_id"));
+		String actorsTxt = "";
 		txfTitle.setText(films.getString("title"));
 		txfReleYear.setText(films.getString("release_year"));
 		txfLength.setText(Integer.toString(films.getInt("length")));
@@ -283,25 +338,51 @@ public class FilmViewer {
 		txfRentRate.setText(Double.toString(films.getDouble("rental_rate")));
 		txfReplCost.setText(Double.toString(films.getDouble("replacement_cost")));
 		txaDescr.setText(films.getString("description"));
+		while (actors.next()) {
+			if (actors.isLast())
+				actorsTxt += actors.getString(1);
+			else
+				actorsTxt += actors.getString(1) + ", ";
+		}
+		txaActors.setText(actorsTxt);
 	}
 
-	private void switchButtons() {
+	private void switchButtonsEdit() {
 		btnEdit.setEnabled(!btnEdit.isEnabled());
 		btnNew.setEnabled(!btnNew.isEnabled());
 		btnSave.setVisible(!btnSave.isVisible());
 		btnCancel.setVisible(!btnCancel.isVisible());
 	}
 
+	private void switchButtonsMovement() {
+		btnFirst.setVisible(!btnFirst.isVisible());
+		btnPrev.setVisible(!btnPrev.isVisible());
+		btnNext.setVisible(!btnNext.isVisible());
+		btnLast.setVisible(!btnLast.isVisible());
+	}
+
 	private void switchEditText() {
 		txfTitle.setEditable(!txfTitle.isEditable());
 		txfReleYear.setEditable(!txfReleYear.isEditable());
 		txfLength.setEditable(!txfLength.isEditable());
-		txfRating.setEditable(!txfRating.isEditable());
 		txfLastUpdate.setEditable(!txfLastUpdate.isEditable());
-		txfSpecFeat.setEditable(!txfSpecFeat.isEditable());
 		txfRentDur.setEditable(!txfRentDur.isEditable());
 		txfRentRate.setEditable(!txfRentRate.isEditable());
 		txfReplCost.setEditable(!txfReplCost.isEditable());
-		txaDescr.setEnabled(!txaDescr.isEditable());
+		txaDescr.setEditable(!txaDescr.isEditable());
+	}
+
+	private void clearText() {
+		txfTitle.setText("");
+		txfReleYear.setText("");
+		txfLength.setText("");
+		txfRating.setText("");
+		txfLastUpdate.setText("");
+		txfRentDur.setText("");
+		txfRentRate.setText("");
+		txfReplCost.setText("");
+		txfSpecFeat.setText("");
+		txaActors.setText("");
+		txaDescr.setText("");
 	}
 }

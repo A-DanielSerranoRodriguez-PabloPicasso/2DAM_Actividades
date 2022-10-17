@@ -12,7 +12,7 @@ public class FilmDAO extends AbstractDAO {
 		statement = getStatement();
 	}
 
-	public ResultSet getFilms(int startPoint) throws SQLException {
-		return statement.executeQuery("select * from film limit " + startPoint + ",20;");
+	public ResultSet getFilms() throws SQLException {
+		return statement.executeQuery("select * from film;");
 	}
 }
