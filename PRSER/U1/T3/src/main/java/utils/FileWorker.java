@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class FileWorker {
 	final private static int processors = Runtime.getRuntime().availableProcessors();
-	final private static String dumpFile_Path = "src/main/resources/dump/";
+	final private static String dumpFile_Path = "dump/";
 
 	public static void generateContent(String filePath) {
 		try {
@@ -29,6 +29,14 @@ public class FileWorker {
 
 		for (int i = 0; i < processors; i++)
 			new File(dumpFile_Path + fParts[0] + "_" + i + fParts[1]).createNewFile();
+	}
+
+	public static void deleteFiles() {
+		File file = new File(dumpFile_Path);
+		File[] files = file.listFiles();
+
+		for (int i = 0; i < files.length; i++)
+			files[i].delete();
 	}
 
 	public static void writeFiles(String filePath) throws IOException {

@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class HM_Numeros {
 	protected static int hacerMedia(int[] nums) throws IOException {
+		long startTime = System.currentTimeMillis();
 		int numbers = nums.length;
 		String[] results = new String[nums.length + 4];
 		results[0] = "java";
@@ -12,13 +13,14 @@ public class HM_Numeros {
 		results[2] = "./bin";
 		results[3] = "models.HM_Numeros";
 
-		for(int i = 0; i < numbers; i++) {
-			results[i+4] = Integer.toString(nums[i]);
+		for (int i = 0; i < numbers; i++) {
+			results[i + 4] = Integer.toString(nums[i]);
 		}
 
 		ProcessBuilder pb = new ProcessBuilder(results);
 		Process p = pb.start();
 		BufferedReader br = new BufferedReader(p.inputReader());
+		System.out.println("Duracion proceso: " + (double) (System.currentTimeMillis() - startTime) / 100);
 		return Integer.parseInt(br.readLine());
 	}
 
