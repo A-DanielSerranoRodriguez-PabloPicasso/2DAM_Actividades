@@ -328,6 +328,7 @@ public class FilmViewer {
 		ActorDAO aDao = new ActorDAO();
 		ResultSet actors = aDao.getFilms(films.getInt("film_id"));
 		String actorsTxt = "";
+		
 		txfTitle.setText(films.getString("title"));
 		txfReleYear.setText(films.getString("release_year"));
 		txfLength.setText(Integer.toString(films.getInt("length")));
@@ -338,6 +339,7 @@ public class FilmViewer {
 		txfRentRate.setText(Double.toString(films.getDouble("rental_rate")));
 		txfReplCost.setText(Double.toString(films.getDouble("replacement_cost")));
 		txaDescr.setText(films.getString("description"));
+		
 		while (actors.next()) {
 			if (actors.isLast())
 				actorsTxt += actors.getString(1);
