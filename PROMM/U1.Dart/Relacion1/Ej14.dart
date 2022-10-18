@@ -1,13 +1,19 @@
-void main(List<String> args) {
+void main(List<String> args) async {
   print("antes");
-  prueba(10).then((value) => print(value));
+  await prueba(10).then((value) => print(value));
+
   print("despues");
 }
 
-Future<int> prueba(int vueltas) {
+Future<int> prueba(int vueltas) async {
   int total = 0;
   for (var i = 0; i < vueltas; i++) {
     total += i;
   }
-  return Future.delayed(Duration(seconds: 3), () => total);
+  total = await extra();
+  return Future.delayed(const Duration(seconds: 3), () => total);
+}
+
+int extra() {
+  return 100;
 }

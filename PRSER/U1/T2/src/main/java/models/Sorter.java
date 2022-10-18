@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Sorter {
-//	public static ArrayList<Integer> sorter(ArrayList<Integer> lista) {
+//	public static ArrayList<Integer> sortier(ArrayList<Integer> lista) {
 //		if (lista.size() > 1) {
 //			ArrayList<Integer> primero = new ArrayList<>(), segundo = new ArrayList<>(), resultado = new ArrayList<>();
 //			int pivote = lista.get(0);
