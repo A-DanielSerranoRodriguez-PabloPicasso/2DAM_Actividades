@@ -12,9 +12,10 @@ public class ActorDAO extends AbstractDAO {
 		statement = getStatement();
 	}
 
-	public ResultSet getFilms(int filmId) throws SQLException {
+	public ResultSet getActor(int filmId) throws SQLException {
 		return statement.executeQuery(
 				"select concat(a.first_name, ' ', a.last_name) from actor a inner join film_actor fa on a.actor_id = fa.actor_id where fa.film_id = "
 						+ filmId + ";");
 	}
+
 }

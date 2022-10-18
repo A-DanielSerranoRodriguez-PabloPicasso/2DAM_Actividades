@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.CardLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,6 +20,7 @@ import dao.FilmDAO;
 
 public class FilmViewer {
 	private ResultSet films = null;
+	private boolean opt;
 
 	private JFrame frame;
 	private JPanel mainPanel;
@@ -277,6 +280,7 @@ public class FilmViewer {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNew.setVisible(false);
+				opt = false;
 				switchButtonsEdit();
 				switchButtonsMovement();
 				switchEditText();
@@ -286,10 +290,59 @@ public class FilmViewer {
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEdit.setVisible(false);
+				opt = true;
 				clearText();
 				switchButtonsEdit();
 				switchButtonsMovement();
 				switchEditText();
+			}
+		});
+
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String title = txfTitle.getText(), rentDur = txfRentDur.getText(), rentRate = txfRentRate.getText(),
+						replCost = txfReplCost.getText(), empties = "Faltan los siguientes campos: \n\n";
+				String[][] mustHave = { { title, "Titulo" }, { rentDur, "Duracion alquiler" },
+						{ rentRate, "Coste de alquiler" }, { replCost, "Coste de reemplazo" } };
+
+				if (title.isBlank() || rentDur.isBlank() || rentRate.isBlank() || replCost.isBlank()) {
+					for (int i = 0; i < mustHave.length; i++) {
+						if (mustHave[i][0].isBlank())
+							empties += mustHave[i][1] + "\n";
+					}
+
+					JOptionPane.showMessageDialog(frame, empties);
+				} else {
+					FilmDAO fdao = null;
+					try {
+						fdao = new FilmDAO();
+					} catch (SQLException e2) {
+						e2.printStackTrace();
+					}
+					if (opt) {
+						if (fdao.insertFilm(txfTitle.getText(), txaDescr.getText(), txfReleYear.getText(),
+								txfLength.getText(), txfRentDur.getText(), txfRentRate.getText(),
+								txfReplCost.getText()))
+							JOptionPane.showMessageDialog(frame, "Insertado correctamente");
+						else
+							JOptionPane.showMessageDialog(frame, "Algo ha pasado, contacta al administrador");
+						try {
+							films = fdao.getFilms();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					} else {
+						try {
+							if (fdao.updateFilm(films.getInt(1), title, txaDescr.getText(), txfReleYear.getText(),
+									txfLength.getText(), rentDur, rentRate, replCost))
+								JOptionPane.showMessageDialog(frame, "Actualizado correctamente");
+							else
+								JOptionPane.showMessageDialog(frame, "Algo ha pasado, contacta al administrador");
+						} catch (HeadlessException | SQLException e1) {
+							e1.printStackTrace();
+						}
+					}
+				}
 			}
 		});
 
@@ -326,11 +379,11 @@ public class FilmViewer {
 
 	private void fillText() throws SQLException {
 		ActorDAO aDao = new ActorDAO();
-		ResultSet actors = aDao.getFilms(films.getInt("film_id"));
+		ResultSet actors = aDao.getActor(films.getInt("film_id"));
 		String actorsTxt = "";
-		
+
 		txfTitle.setText(films.getString("title"));
-		txfReleYear.setText(films.getString("release_year"));
+		txfReleYear.setText(films.getString("release_year").split("-")[0]);
 		txfLength.setText(Integer.toString(films.getInt("length")));
 		txfRating.setText(films.getString("rating"));
 		txfLastUpdate.setText(films.getString("last_update"));
@@ -339,7 +392,7 @@ public class FilmViewer {
 		txfRentRate.setText(Double.toString(films.getDouble("rental_rate")));
 		txfReplCost.setText(Double.toString(films.getDouble("replacement_cost")));
 		txaDescr.setText(films.getString("description"));
-		
+
 		while (actors.next()) {
 			if (actors.isLast())
 				actorsTxt += actors.getString(1);
@@ -367,7 +420,6 @@ public class FilmViewer {
 		txfTitle.setEditable(!txfTitle.isEditable());
 		txfReleYear.setEditable(!txfReleYear.isEditable());
 		txfLength.setEditable(!txfLength.isEditable());
-		txfLastUpdate.setEditable(!txfLastUpdate.isEditable());
 		txfRentDur.setEditable(!txfRentDur.isEditable());
 		txfRentRate.setEditable(!txfRentRate.isEditable());
 		txfReplCost.setEditable(!txfReplCost.isEditable());
