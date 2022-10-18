@@ -302,7 +302,10 @@ public class FilmViewer {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String title = txfTitle.getText(), rentDur = txfRentDur.getText(), rentRate = txfRentRate.getText(),
-						replCost = txfReplCost.getText(), empties = "Faltan los siguientes campos: \n\n";
+						replCost = txfReplCost.getText(),
+						length = txfLength.getText().isBlank() ? "0" : txfLength.getText(),
+						releaseYear = txfReleYear.getText().isBlank() ? "0" : txfReleYear.getText(),
+						empties = "Faltan los siguientes campos: \n\n";
 				String[][] mustHave = { { title, "Titulo" }, { rentDur, "Duracion alquiler" },
 						{ rentRate, "Coste de alquiler" }, { replCost, "Coste de reemplazo" } };
 
@@ -321,12 +324,35 @@ public class FilmViewer {
 						e2.printStackTrace();
 					}
 					if (opt) {
-						if (fdao.insertFilm(txfTitle.getText(), txaDescr.getText(), txfReleYear.getText(),
-								txfLength.getText(), txfRentDur.getText(), txfRentRate.getText(),
-								txfReplCost.getText()))
+						boolean correct = false;
+						try {
+							films.moveToInsertRow();
+							films.updateString("title", title);
+							films.updateString("description", txaDescr.getText());
+							films.updateInt("release_year", Integer.parseInt(releaseYear));
+							films.updateDouble("rental_duration", Double.parseDouble(rentDur));
+							films.updateDouble("rental_rate", Double.parseDouble(rentRate));
+							films.updateInt("length", Integer.parseInt(length));
+							films.updateDouble("replacement_cost", Double.parseDouble(replCost));
+							films.updateInt("language_id", 1);
+							films.insertRow();
+						} catch (SQLException e2) {
+							e2.printStackTrace();
+							correct = false;
+						} finally {
+							correct = true;
+						}
+
+						if (correct)
 							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Insertado correctamente");
 						else
-							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Algo ha pasado, contacta al administrador");
+							JOptionPane.showMessageDialog(frmPeliculasDeSakila,
+									"Algo ha pasado, contacta al administrador");
+
+//						if (fdao.insertFilm(txfTitle.getText(), txaDescr.getText(), txfReleYear.getText(),
+//								txfLength.getText(), txfRentDur.getText(), txfRentRate.getText(),
+//								txfReplCost.getText()))
+////						else
 						try {
 							films = fdao.getFilms();
 						} catch (SQLException e1) {
@@ -338,7 +364,8 @@ public class FilmViewer {
 									txfLength.getText(), rentDur, rentRate, replCost))
 								JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Actualizado correctamente");
 							else
-								JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Algo ha pasado, contacta al administrador");
+								JOptionPane.showMessageDialog(frmPeliculasDeSakila,
+										"Algo ha pasado, contacta al administrador");
 						} catch (HeadlessException | SQLException e1) {
 							e1.printStackTrace();
 						}
