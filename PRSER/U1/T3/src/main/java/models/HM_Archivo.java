@@ -6,16 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class HM_Archivo {
-	protected static int hacerMedia(String file) throws IOException {
-		ProcessBuilder pb = new ProcessBuilder("java", "-cp", "./bin", "models.HM_Archivo", file);
-		long startTime = System.currentTimeMillis();
-		Process p = pb.start();
-		BufferedReader br = new BufferedReader(p.inputReader());
-		System.out.println("Duracion proceso: " + (double) (System.currentTimeMillis() - startTime) / 100);
-		return Integer.parseInt(br.readLine());
-	}
-
 	public static void main(String[] args) {
+		long startTime = System.currentTimeMillis();
 		BufferedReader br = null;
 		int sum = 0, total = 0;
 		String aux;
@@ -38,5 +30,6 @@ public class HM_Archivo {
 		}
 
 		System.out.println(sum / total);
+		System.out.println("Duracion proceso: " + (double) (System.currentTimeMillis() - startTime) / 100);
 	}
 }

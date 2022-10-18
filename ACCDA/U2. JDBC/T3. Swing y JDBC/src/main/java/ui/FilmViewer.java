@@ -22,7 +22,7 @@ public class FilmViewer {
 	private ResultSet films = null;
 	private boolean opt;
 
-	private JFrame frame;
+	private JFrame frmPeliculasDeSakila;
 	private JPanel mainPanel;
 
 	private JLabel lblTitle, lblDescr, lblReleYear, lblRentDur, lblRentRate, lblLength, lblReplCost, lblRating,
@@ -45,24 +45,25 @@ public class FilmViewer {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		frame.repaint();
-		frame.revalidate();
+		frmPeliculasDeSakila.repaint();
+		frmPeliculasDeSakila.revalidate();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
-		frame.setVisible(true);
+		frmPeliculasDeSakila = new JFrame();
+		frmPeliculasDeSakila.setTitle("Peliculas de Sakila");
+		frmPeliculasDeSakila.setBounds(100, 100, 1000, 700);
+		frmPeliculasDeSakila.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPeliculasDeSakila.getContentPane().setLayout(new CardLayout(0, 0));
+		frmPeliculasDeSakila.setVisible(true);
 	}
 
 	private void setUIcomponents() {
 		mainPanel = new JPanel();
-		frame.getContentPane().add(mainPanel, "name_5564877770200");
+		frmPeliculasDeSakila.getContentPane().add(mainPanel, "name_5564877770200");
 		mainPanel.setLayout(null);
 
 		lblTitle = new JLabel("Titulo");
@@ -311,7 +312,7 @@ public class FilmViewer {
 							empties += mustHave[i][1] + "\n";
 					}
 
-					JOptionPane.showMessageDialog(frame, empties);
+					JOptionPane.showMessageDialog(frmPeliculasDeSakila, empties);
 				} else {
 					FilmDAO fdao = null;
 					try {
@@ -323,9 +324,9 @@ public class FilmViewer {
 						if (fdao.insertFilm(txfTitle.getText(), txaDescr.getText(), txfReleYear.getText(),
 								txfLength.getText(), txfRentDur.getText(), txfRentRate.getText(),
 								txfReplCost.getText()))
-							JOptionPane.showMessageDialog(frame, "Insertado correctamente");
+							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Insertado correctamente");
 						else
-							JOptionPane.showMessageDialog(frame, "Algo ha pasado, contacta al administrador");
+							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Algo ha pasado, contacta al administrador");
 						try {
 							films = fdao.getFilms();
 						} catch (SQLException e1) {
@@ -335,9 +336,9 @@ public class FilmViewer {
 						try {
 							if (fdao.updateFilm(films.getInt(1), title, txaDescr.getText(), txfReleYear.getText(),
 									txfLength.getText(), rentDur, rentRate, replCost))
-								JOptionPane.showMessageDialog(frame, "Actualizado correctamente");
+								JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Actualizado correctamente");
 							else
-								JOptionPane.showMessageDialog(frame, "Algo ha pasado, contacta al administrador");
+								JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Algo ha pasado, contacta al administrador");
 						} catch (HeadlessException | SQLException e1) {
 							e1.printStackTrace();
 						}
@@ -383,7 +384,7 @@ public class FilmViewer {
 		String actorsTxt = "";
 
 		txfTitle.setText(films.getString("title"));
-		txfReleYear.setText(films.getString("release_year").split("-")[0]);
+		txfReleYear.setText(Integer.toString(films.getInt("release_year")));
 		txfLength.setText(Integer.toString(films.getInt("length")));
 		txfRating.setText(films.getString("rating"));
 		txfLastUpdate.setText(films.getString("last_update"));

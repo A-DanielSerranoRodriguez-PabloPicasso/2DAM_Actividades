@@ -33,6 +33,7 @@ public class MainApp {
 			BufferedReader br = new BufferedReader(procesos[i].inputReader());
 			try {
 				nums[i] = br.readLine();
+				System.out.println(br.readLine());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -44,23 +45,24 @@ public class MainApp {
 		for (int i = 0; i < nums.length; i++) {
 			pb.command().add(nums[i]);
 		}
-		
+
 		Process fin;
 		BufferedReader br = null;
 		try {
 			fin = pb.start();
 			br = new BufferedReader(fin.inputReader());
+			System.out.println("Media: " + br.readLine());
 			System.out.println(br.readLine());
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				br.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		FileWorker.deleteFiles();
 
 		System.out.println("Se ha tardado " + (double) (System.currentTimeMillis() - startTime) / 1000 + " segundos");
