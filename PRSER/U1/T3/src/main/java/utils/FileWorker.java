@@ -55,7 +55,7 @@ public class FileWorker {
 				bw.write(br.readLine() + "\n");
 				linea++;
 			}
-
+			bw.flush();
 			bw.close();
 		}
 		br.close();
