@@ -8,6 +8,6 @@ public class HM_Numeros {
 			num += Integer.parseInt(args[i]);
 		}
 		System.out.println(num / total);
-		System.out.println("Duracion proceso: " + (double) (System.currentTimeMillis() - startTime) / 100);
+		System.out.println("Duracion proceso media numeros: " + (double) (System.currentTimeMillis() - startTime) / 100);
 	}
 }

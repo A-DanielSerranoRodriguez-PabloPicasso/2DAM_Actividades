@@ -51,7 +51,7 @@ public class FileWorker {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(dumpFile_Path + fParts[0] + "_" + i + fParts[1]));
 			int linea = 0;
 
-			while (linea != parte) {
+			while (linea != parte - 1) {
 				bw.write(br.readLine() + "\n");
 				linea++;
 			}

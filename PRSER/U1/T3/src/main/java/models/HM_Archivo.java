@@ -30,6 +30,6 @@ public class HM_Archivo {
 		}
 
 		System.out.println(sum / total);
-		System.out.println("Duracion proceso: " + (double) (System.currentTimeMillis() - startTime) / 100);
+		System.out.println("Duracion proceso media archivo: " + (double) (System.currentTimeMillis() - startTime) / 100);
 	}
 }
