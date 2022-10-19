@@ -317,12 +317,6 @@ public class FilmViewer {
 
 					JOptionPane.showMessageDialog(frmPeliculasDeSakila, empties);
 				} else {
-					FilmDAO fdao = null;
-					try {
-						fdao = new FilmDAO();
-					} catch (SQLException e2) {
-						e2.printStackTrace();
-					}
 					if (opt) {
 						boolean correct = false;
 						try {
@@ -348,27 +342,30 @@ public class FilmViewer {
 						else
 							JOptionPane.showMessageDialog(frmPeliculasDeSakila,
 									"Algo ha pasado, contacta al administrador");
-
-//						if (fdao.insertFilm(txfTitle.getText(), txaDescr.getText(), txfReleYear.getText(),
-//								txfLength.getText(), txfRentDur.getText(), txfRentRate.getText(),
-//								txfReplCost.getText()))
-////						else
-						try {
-							films = fdao.getFilms();
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
 					} else {
+						boolean correct = false;
 						try {
-							if (fdao.updateFilm(films.getInt(1), title, txaDescr.getText(), txfReleYear.getText(),
-									txfLength.getText(), rentDur, rentRate, replCost))
-								JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Actualizado correctamente");
-							else
-								JOptionPane.showMessageDialog(frmPeliculasDeSakila,
-										"Algo ha pasado, contacta al administrador");
-						} catch (HeadlessException | SQLException e1) {
-							e1.printStackTrace();
+							films.updateString("title", title);
+							films.updateString("description", txaDescr.getText());
+							films.updateInt("release_year", Integer.parseInt(releaseYear));
+							films.updateDouble("rental_duration", Double.parseDouble(rentDur));
+							films.updateDouble("rental_rate", Double.parseDouble(rentRate));
+							films.updateInt("length", Integer.parseInt(length));
+							films.updateDouble("replacement_cost", Double.parseDouble(replCost));
+							films.updateInt("language_id", 1);
+							films.updateRow();
+						} catch (SQLException e2) {
+							e2.printStackTrace();
+							correct = false;
+						} finally {
+							correct = true;
 						}
+
+						if (correct)
+							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Actualizado correctamente");
+						else
+							JOptionPane.showMessageDialog(frmPeliculasDeSakila,
+									"Algo ha pasado, contacta al administrador");
 					}
 				}
 			}
