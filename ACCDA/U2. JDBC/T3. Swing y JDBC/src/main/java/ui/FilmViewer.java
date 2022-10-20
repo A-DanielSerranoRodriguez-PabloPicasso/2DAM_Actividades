@@ -1,15 +1,16 @@
 package ui;
 
 import java.awt.CardLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -20,7 +21,8 @@ import dao.FilmDAO;
 
 public class FilmViewer {
 	private ResultSet films = null;
-	private boolean opt;
+	private boolean newFilm;
+	private DefaultListModel<String> modeloActores = new DefaultListModel<>();
 
 	private JFrame frmPeliculasDeSakila;
 	private JPanel mainPanel;
@@ -29,17 +31,18 @@ public class FilmViewer {
 			lblSpecFeat, lblLastUpdt, lblActors;
 	private JTextField txfTitle, txfReleYear, txfLength, txfRating, txfLastUpdate, txfSpecFeat, txfRentDur, txfRentRate,
 			txfReplCost;
-	private JTextArea txaDescr, txaActors;
+	private JTextArea txaDescr;
 	private JButton btnFirst, btnPrev, btnNext, btnLast, btnEdit, btnNew, btnSave, btnCancel;
+	private JList<String> listActores;
 
 	/**
 	 * Create the application.
 	 */
 	public FilmViewer() {
 		initialize();
+		getFilms();
 		setUIcomponents();
 		setUIbehaviour();
-		getFilms();
 		try {
 			fillText();
 		} catch (SQLException e) {
@@ -71,7 +74,7 @@ public class FilmViewer {
 		mainPanel.add(lblTitle);
 
 		lblDescr = new JLabel("Descripcion");
-		lblDescr.setBounds(43, 383, 86, 14);
+		lblDescr.setBounds(43, 265, 86, 14);
 		mainPanel.add(lblDescr);
 
 		lblReleYear = new JLabel("Año lanzamiento");
@@ -107,7 +110,7 @@ public class FilmViewer {
 		mainPanel.add(lblLastUpdt);
 
 		lblActors = new JLabel("Actores");
-		lblActors.setBounds(43, 263, 46, 14);
+		lblActors.setBounds(706, 265, 46, 14);
 		mainPanel.add(lblActors);
 
 		txfTitle = new JTextField();
@@ -164,16 +167,10 @@ public class FilmViewer {
 		txfReplCost.setBounds(395, 208, 86, 20);
 		mainPanel.add(txfReplCost);
 
-		txaActors = new JTextArea();
-		txaActors.setLineWrap(true);
-		txaActors.setEditable(false);
-		txaActors.setBounds(43, 288, 873, 64);
-		mainPanel.add(txaActors);
-
 		txaDescr = new JTextArea();
 		txaDescr.setLineWrap(true);
 		txaDescr.setEditable(false);
-		txaDescr.setBounds(43, 408, 873, 103);
+		txaDescr.setBounds(43, 290, 611, 241);
 		mainPanel.add(txaDescr);
 
 		btnFirst = new JButton("Primero");
@@ -211,6 +208,10 @@ public class FilmViewer {
 		btnCancel.setVisible(false);
 		btnCancel.setBounds(587, 207, 121, 23);
 		mainPanel.add(btnCancel);
+
+		listActores = new JList<String>();
+		listActores.setBounds(706, 290, 210, 237);
+		mainPanel.add(listActores);
 	}
 
 	private void setUIbehaviour() {
@@ -281,7 +282,7 @@ public class FilmViewer {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNew.setVisible(false);
-				opt = false;
+				newFilm = false;
 				switchButtonsEdit();
 				switchButtonsMovement();
 				switchEditText();
@@ -291,7 +292,7 @@ public class FilmViewer {
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEdit.setVisible(false);
-				opt = true;
+				newFilm = true;
 				clearText();
 				switchButtonsEdit();
 				switchButtonsMovement();
@@ -317,7 +318,7 @@ public class FilmViewer {
 
 					JOptionPane.showMessageDialog(frmPeliculasDeSakila, empties);
 				} else {
-					if (opt) {
+					if (newFilm) {
 						boolean correct = false;
 						try {
 							films.moveToInsertRow();
@@ -337,9 +338,22 @@ public class FilmViewer {
 							correct = true;
 						}
 
-						if (correct)
+						if (correct) {
 							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Insertado correctamente");
-						else
+							switchButtonsEdit();
+							switchButtonsMovement();
+							switchEditText();
+							btnEdit.setVisible(true);
+							btnNew.setVisible(true);
+							getFilms();
+							try {
+								fillText();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+							btnPrev.setEnabled(false);
+							btnFirst.setEnabled(false);
+						} else
 							JOptionPane.showMessageDialog(frmPeliculasDeSakila,
 									"Algo ha pasado, contacta al administrador");
 					} else {
@@ -361,9 +375,14 @@ public class FilmViewer {
 							correct = true;
 						}
 
-						if (correct)
+						if (correct) {
 							JOptionPane.showMessageDialog(frmPeliculasDeSakila, "Actualizado correctamente");
-						else
+							switchButtonsEdit();
+							switchButtonsMovement();
+							switchEditText();
+							btnEdit.setVisible(true);
+							btnNew.setVisible(true);
+						} else
 							JOptionPane.showMessageDialog(frmPeliculasDeSakila,
 									"Algo ha pasado, contacta al administrador");
 					}
@@ -405,7 +424,6 @@ public class FilmViewer {
 	private void fillText() throws SQLException {
 		ActorDAO aDao = new ActorDAO();
 		ResultSet actors = aDao.getActor(films.getInt("film_id"));
-		String actorsTxt = "";
 
 		txfTitle.setText(films.getString("title"));
 		txfReleYear.setText(Integer.toString(films.getInt("release_year")));
@@ -419,12 +437,9 @@ public class FilmViewer {
 		txaDescr.setText(films.getString("description"));
 
 		while (actors.next()) {
-			if (actors.isLast())
-				actorsTxt += actors.getString(1);
-			else
-				actorsTxt += actors.getString(1) + ", ";
+			modeloActores.addElement(actors.getString(1));
 		}
-		txaActors.setText(actorsTxt);
+		listActores.setModel(modeloActores);
 	}
 
 	private void switchButtonsEdit() {
@@ -461,7 +476,8 @@ public class FilmViewer {
 		txfRentRate.setText("");
 		txfReplCost.setText("");
 		txfSpecFeat.setText("");
-		txaActors.setText("");
 		txaDescr.setText("");
+		modeloActores.clear();
+		listActores.setModel(modeloActores);
 	}
 }
