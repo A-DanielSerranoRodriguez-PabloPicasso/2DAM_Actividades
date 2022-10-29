@@ -1,0 +1,19 @@
+package mainApp;
+
+import java.security.KeyStore;
+
+public class CifraRSAApp {
+
+	public static void main(String[] args) {
+		// args[0] = Mensaje a crifrar
+		// args[1] = Clave publica del keystore: claves(keystore) => miclave(key)
+
+		/*
+		 * El mensaje se cifra usando la clave publica de "miclave" y se escupe por
+		 * pantalla. Se pasa a Base64 por si hay caracteres no legibles.
+		 */
+		
+		KeyStore kstore = KeyStore.getInstance(KeyStore.getDefaultType());
+	}
+
+}

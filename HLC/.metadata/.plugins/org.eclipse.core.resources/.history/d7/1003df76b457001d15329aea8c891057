@@ -1,0 +1,5 @@
+package models;
+
+public interface Decrypter {
+	public default void decrypt(String mensaje, String keyStorePath, String clave, String passwd);
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 packages to &apos;T2. Ficheros AES y GCM/src/main/java&apos;&#x0A;- Original project: &apos;T1_CifSimAES&apos;&#x0A;- Destination element: &apos;T2. Ficheros AES y GCM/src/main/java&apos;&#x0A;- Original elements:&#x0A;     T1_CifSimAES/src/main/java/mainApp&#x0A;     T1_CifSimAES/src/main/java/codex&#x0A;     T1_CifSimAES/src/main/java/utils" description="Copy packages" destination="=T2. Ficheros AES y GCM/src\/main\/java" element1="/src\/main\/java&lt;mainApp" element2="/src\/main\/java&lt;codex" element3="/src\/main\/java&lt;utils" flags="589830" fragments="3" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1666020103812" version="1.0"/>
+</session>

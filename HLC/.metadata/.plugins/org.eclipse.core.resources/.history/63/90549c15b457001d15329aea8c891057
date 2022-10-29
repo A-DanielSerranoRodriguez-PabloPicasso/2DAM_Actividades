@@ -1,0 +1,10 @@
+package models;
+
+class Decrypt implements Decrypter{
+
+	@Override
+	public void decrypt() {
+		
+	}
+
+}
