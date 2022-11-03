@@ -15,15 +15,15 @@ public class MainApp {
 
 		for (int i = 1; i <= 20; i++) {
 			categorias.add(new Categoria("Categoria" + i, "Descripcion" + i));
-			cambios[0] = "Categoria" + (20 - i);
-			cambios[1] = "Descripcion" + (20 - i);
+			cambios[0] = "Categoria" + (20 + i);
+			cambios[1] = "Descripcion" + (20 + i);
 		}
 
 		try {
 			nDao = new NeptunoDAO();
-//			nDao.insertCategoriaBatch(categorias);
+			nDao.insertCategoriaBatch(categorias);
 
-			nDao.updateCategoriaBatch(categorias, cambios, true, true);
+			nDao.updateCategoriaBatch(categorias, cambios, false, true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
