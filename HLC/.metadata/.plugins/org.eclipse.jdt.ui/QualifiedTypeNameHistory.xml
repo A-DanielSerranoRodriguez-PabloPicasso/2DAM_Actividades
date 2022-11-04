@@ -7,8 +7,6 @@
     <fullyQualifiedTypeName name="javax.crypto.KeyGenerator"/>
     <fullyQualifiedTypeName name="javax.crypto.spec.SecretKeySpec"/>
     <fullyQualifiedTypeName name="codex.CifraAES"/>
-    <fullyQualifiedTypeName name="javax.crypto.Cipher"/>
-    <fullyQualifiedTypeName name="java.util.Base64"/>
     <fullyQualifiedTypeName name="codex.DescifraAES"/>
     <fullyQualifiedTypeName name="javax.crypto.spec.PBEKeySpec"/>
     <fullyQualifiedTypeName name="javax.crypto.SecretKeyFactory"/>
@@ -17,7 +15,14 @@
     <fullyQualifiedTypeName name="java.security.Provider"/>
     <fullyQualifiedTypeName name="javax.crypto.SecretKey"/>
     <fullyQualifiedTypeName name="utils.SecretKeyWorker"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="java.security.KeyStore"/>
+    <fullyQualifiedTypeName name="java.security.cert.Certificate"/>
+    <fullyQualifiedTypeName name="java.util.Base64"/>
+    <fullyQualifiedTypeName name="java.security.Key"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.security.PrivateKey"/>
+    <fullyQualifiedTypeName name="javax.crypto.Cipher"/>
+    <fullyQualifiedTypeName name="models.Decrypter"/>
 </qualifiedTypeNameHistroy>

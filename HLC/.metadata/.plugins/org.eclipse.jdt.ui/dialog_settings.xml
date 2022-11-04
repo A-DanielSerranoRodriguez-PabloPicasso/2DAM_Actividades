@@ -41,4 +41,17 @@
 		<item key="width" value="600"/>
 		<item key="height" value="400"/>
 	</section>
+	<section name="FatJarPackageWizard">
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="/mnt/3TB/FP_DAM/SEGUNDO/Actividades/HLC"/>
+		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="2"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="CifraRSAApp - T3. Cifrar RSA"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="/home/danielsr/Test.jar"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/home/danielsr/Test.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value=".xml"/>
+		</list>
+	</section>
 </section>
