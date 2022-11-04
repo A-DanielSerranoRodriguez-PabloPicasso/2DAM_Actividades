@@ -19,7 +19,8 @@ public class Neptuno2DAO extends AbstractDAO {
 	}
 
 	/**
-	 * Inserta las categorias en la base de datos en la tabla "categorias".
+	 * Inserta las categorias en la base de datos en la tabla "categorias"
+	 * utilizando lotes de 5 en 5.
 	 * 
 	 * @param categorias ArrayList<Categoria>
 	 * @throws SQLException
@@ -34,7 +35,7 @@ public class Neptuno2DAO extends AbstractDAO {
 			prepStmt.setString(2, cat.getDescripcion());
 			prepStmt.addBatch();
 
-			if (i % 5 == 0) {
+			if ((i + 1) % 5 == 0) {
 				prepStmt.executeBatch();
 				prepStmt.clearBatch();
 			}
@@ -43,6 +44,15 @@ public class Neptuno2DAO extends AbstractDAO {
 		prepStmt.executeBatch();
 	}
 
+	/**
+	 * Actualiza las categorias de la tabla "categorias" en la base de datos.
+	 * 
+	 * @param categorias ArrayList<Categoria>
+	 * @param cambios    ArrayList<Categoria>
+	 * @param campo1     boolean
+	 * @param campo2     boolean
+	 * @throws SQLException
+	 */
 	public void updateCategoriaBatch(ArrayList<Categoria> categorias, ArrayList<Categoria> cambios, boolean campo1,
 			boolean campo2) throws SQLException {
 		String sqlUpdateAll = "update categorias set categoria=?, descripcion=? where categoria=?;";
@@ -65,7 +75,7 @@ public class Neptuno2DAO extends AbstractDAO {
 
 			prepStmt.addBatch();
 
-			if (i % 5 == 0) {
+			if ((i + 1) % 5 == 0) {
 				prepStmt.executeBatch();
 				prepStmt.clearBatch();
 			}
