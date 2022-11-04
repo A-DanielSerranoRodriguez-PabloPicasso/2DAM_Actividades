@@ -1,0 +1,20 @@
+CATEGORIA
+id;categoria;descripcion
+7;Frutas/Verduras;Frutas secas y queso de soja
+
+PROVEEDORES
+id;empresa;contacto
+3;Grandma Kelly's Homestead;Regina Murphy
+4;Tokyo Traders;Yoshi Nagase
+6;Mayumi's;Mayumi Ohno
+12;Plutzer Lebensmittelgroßmärkte AG;Martin Bein
+24;G'day, Mate;Wendy Mackenzie
+
+PRODUCTOS
+id;producto;proveedor_id;categoria_id;cantidad_por_unidad;precio_unidad;unidades_existencia;unidades_pedido;nivel_nuevo_pedido;suspendido
+7;Peras secas orgánicas del tío Bob;3;7;12 - paq. 1 kg;30.0;15;0;10;0
+14;Cuajada de judías;6;7;40 - paq. 100 g;23.25;35;0;0;0
+28;Col fermentada Rössle;12;7;25 - latas 825 g;45.6;26;0;0;-1
+51;Manzanas secas Manjimup;24;7;50 - paq. 300 g;53.0;20;0;10;0
+74;Queso de soja Longlife;4;7;paq. 5 kg;10.0;4;20;5;0
+
