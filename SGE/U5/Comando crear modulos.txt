@@ -1,0 +1,1 @@
+python\python.exe "server\odoo-bin" scaffold * "server\odoo\addons"
