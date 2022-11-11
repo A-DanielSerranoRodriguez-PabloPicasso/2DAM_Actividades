@@ -13,8 +13,8 @@ public class MainApp {
 			n2dao = new Neptuno2DAO();
 			n2dao.updateDescCategoria(1, "Nueva descripcion");
 
-			// Esto es lo que falla, error de out
-//			System.out.println(n2dao.getCategoria(1));
+			// Esto es lo que falla, error de out parameter
+			System.out.println(n2dao.getCategoria(1));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -15,7 +15,7 @@ public abstract class AbstractDAO {
 	 * Se establece una conexion estatica a la base de datos para un uso sencillo de
 	 * esta.
 	 */
-	private final String DB_URL = "jdbc:mysql://localhost:3306/", DB_USER = "accda", DB_PASSWD = "accda";
+	private final String DB_URL = "jdbc:mysql://localhost:3306/bd_neptuno2", DB_USER = "accda", DB_PASSWD = "accda";
 	protected static Connection CONN;
 
 	/**

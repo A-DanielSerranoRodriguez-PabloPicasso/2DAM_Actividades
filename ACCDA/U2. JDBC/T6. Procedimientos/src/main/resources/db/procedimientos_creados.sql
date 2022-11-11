@@ -4,9 +4,9 @@ delimiter $$
 
 drop procedure if exists getCategoriaName $$
 create procedure getCategoriaName
-	(in idCat int, out cat varchar(255))
+    (in idCat int, out cat varchar(255))
 begin
-	select * into cat
+    select categoria into cat
     from categorias
     where id = idCat;
 end $$
