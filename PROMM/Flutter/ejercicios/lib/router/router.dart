@@ -5,6 +5,7 @@ import 'package:ejercicios/models/models.dart';
 
 class AppRoutes {
   static const home = 'home';
+
   static final rutas = <MenuOption>[
     MenuOption(
       ruta: "ej2",
@@ -15,8 +16,24 @@ class AppRoutes {
       ruta: "ej3",
       nombre: "Ejercicio 3",
       pantalla: const Ej3(),
+    ),
+    MenuOption(
+      ruta: "ej4",
+      nombre: "Ejercicio 4",
+      pantalla: const Ej4(),
+    ),
+    MenuOption(
+      ruta: "ej5",
+      nombre: "Ejercicio 5",
+      pantalla: const Ej5(),
+    ),
+    MenuOption(
+      ruta: "ej7",
+      nombre: "Ejercicio 7",
+      pantalla: const Ej7(),
     )
   ];
+
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> rutasFinal = {};
 

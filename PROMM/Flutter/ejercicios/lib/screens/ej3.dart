@@ -16,16 +16,23 @@ class Ej3 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                decoration: BoxDecoration(color: Colors.red),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                    color: Colors.red, borderRadius: BorderRadius.circular(20)),
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 55, vertical: 10),
                 child: Column(
                   children: [
-                    Image.asset("assets/images/chad.png"),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20)),
+                      clipBehavior: Clip.antiAlias,
+                      child: Image.asset("assets/images/chad.png"),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const Text("Chad")
+                    const Text("Persona del meme 'Chad'")
                   ],
                 ),
               ),
