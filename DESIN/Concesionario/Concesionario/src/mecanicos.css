@@ -1,14 +1,11 @@
 :root{
     --border-radius: 10;
-    --backdrop-color: #cf8ba3;
+    --backdrop-color: #cfdbd5;
     --card-background-color: #fafafa;
-    --pill-editable-background-color: #e5cdc8;
-    --pill-background-color: #d0d0d0;
-    --btn-create-color: #cf8ba3;
-    --btn-cancel-background: #595358;
+    --pill-editable-background-color: #e8eddf;
+    --pill-background-color: #E5E5E5;
+    --btn-create-color: #cfdbd5;
     --btn-back-background: #d9d9d9;
-    --menubar-background: #946f7d;
-    --breadcrumb-background: #82495d;
 }
 
 body{
@@ -37,10 +34,6 @@ body{
 
 .btn-create{
     -fx-background-color: var(--btn-create-color);
-}
-
-.btn-cancel{
-    -fx-background-color: var(--btn-cancel-background);
 }
 
 .btn-back{
