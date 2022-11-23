@@ -1,3 +1,6 @@
 [submodule "PROMM"]
 	path = PROMM
 	url = https://github.com/A-DanielSerranoRodriguez-PabloPicasso/Dart
+[submodule "DESIN/Concesionario/Proyecto"]
+	path = DESIN/Concesionario/Proyecto
+	url = https://gitlab.com/a_daniel.serrano.rodriguez/concesionario.git
