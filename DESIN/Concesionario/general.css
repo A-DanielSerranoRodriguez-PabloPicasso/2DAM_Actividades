@@ -1,0 +1,48 @@
+:root{
+    --border-radius: 10;
+    --backdrop-color: #cf8ba3;
+    --card-background-color: #fafafa;
+    --pill-editable-background-color: #e5cdc8;
+    --pill-background-color: #d0d0d0;
+    --btn-create-color: #cf8ba3;
+    --btn-cancel-background: #595358;
+    --btn-back-background: #d9d9d9;
+    --menubar-background: #946f7d;
+    --breadcrumb-background: #82495d;
+}
+
+body{
+    -fx-background-color: var(--backdrop-color);
+}
+
+.menubar{
+    -fx-background-color: var(--menubar-background);
+}
+.breadcrumb{
+    -fx-background-color: var(--breadcrumb-background);
+}
+.card{
+    -fx-border-radius: var(--border-radius);
+    -fx-background-color: var(--card-background-color);
+}
+
+.pill{
+    -fx-border-radius: var(--border-radius);
+    -fx-background-color: var(--pill-editable-background-color);
+}
+
+.pill-editable{
+    -fx-background-color: var(--pill-editable-background-color);
+}
+
+.btn-create{
+    -fx-background-color: var(--btn-create-color);
+}
+
+.btn-cancel{
+    -fx-background-color: var(--btn-cancel-background);
+}
+
+.btn-back{
+    -fx-background-color: var(--btn-back-background);
+}

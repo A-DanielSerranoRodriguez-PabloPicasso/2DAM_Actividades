@@ -1,0 +1,41 @@
+:root{
+    --border-radius: 10;
+    --backdrop-color: #cfdbd5;
+    --card-background-color: #fafafa;
+    --pill-editable-background-color: #e8eddf;
+    --pill-background-color: #E5E5E5;
+    --btn-create-color: #cfdbd5;
+    --btn-back-background: #d9d9d9;
+}
+
+body{
+    -fx-background-color: var(--backdrop-color);
+}
+
+.menubar{
+    -fx-background-color: var(--menubar-background);
+}
+.breadcrumb{
+    -fx-background-color: var(--breadcrumb-background);
+}
+.card{
+    -fx-border-radius: var(--border-radius);
+    -fx-background-color: var(--card-background-color);
+}
+
+.pill{
+    -fx-border-radius: var(--border-radius);
+    -fx-background-color: var(--pill-editable-background-color);
+}
+
+.pill-editable{
+    -fx-background-color: var(--pill-editable-background-color);
+}
+
+.btn-create{
+    -fx-background-color: var(--btn-create-color);
+}
+
+.btn-back{
+    -fx-background-color: var(--btn-back-background);
+}
