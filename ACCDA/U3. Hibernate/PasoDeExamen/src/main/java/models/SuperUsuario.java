@@ -7,52 +7,72 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="superusuarios")
+@Table(name = "superusuarios")
 public class SuperUsuario {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id = -1;
 	private String nombre;
 	private String apellidos;
 	private String user;
-	
-	public SuperUsuario( String nombre, String apellidos, String user) {
-		super();
+
+	/**
+	 * Creates a "SuperUsuario"
+	 * 
+	 * @param nombre    String
+	 * @param apellidos String
+	 */
+	public SuperUsuario(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.user = user;
+		user();
 	}
 
+	/**
+	 * Obtains the ID. Empty when generated, assigned when inserted in BBDD by
+	 * Hibernate.
+	 * 
+	 * @return int
+	 */
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	/**
+	 * Obtains the name.
+	 * 
+	 * @return String
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	/**
+	 * Obtains the surnames.
+	 * 
+	 * @return String
+	 */
 	public String getApellidos() {
 		return apellidos;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
+	/**
+	 * Obtains the user identification. A shuffle between a fixed "String" (2DAM)
+	 * and the first 2 letters of the name and first surname.
+	 * 
+	 * @return
+	 */
 	public String getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	/**
+	 * Generates the user identification. A shuffle between a fixed "String" (2DAM)
+	 * and the first 2 letters of the name and first surname.
+	 */
+	private void user() {
+		user = "2dam" + nombre.charAt(0) + nombre.charAt(1) + apellidos.charAt(0) + apellidos.charAt(1);
+		user = user.toUpperCase();
 	}
-	
+
 }
