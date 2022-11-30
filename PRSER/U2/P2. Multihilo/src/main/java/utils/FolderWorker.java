@@ -7,23 +7,34 @@ import javax.imageio.ImageIO;
 
 public class FolderWorker extends Thread {
 
-	private String rutaArchivo;
+	private String rutaImagen;
+	private int ancho, alto;
+	private File outputFolder;
 
-	public FolderWorker(String rutaArchivo) {
-		this.rutaArchivo = rutaArchivo;
+	public FolderWorker(String rutaImagen, int ancho, int alto, File outputFolder) {
+		this.rutaImagen = rutaImagen;
+		this.ancho = ancho;
+		this.alto = alto;
+		this.outputFolder = outputFolder;
 	}
 
 	@Override
 	public void run() {
-		File archivo = new File(rutaArchivo);
-		if(archivo.exists()) {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		File archivo = new File(rutaImagen);
+		if (archivo.exists() && archivo.getName().matches(".*.jpg")) {
 			try {
-				ImageWorker.resizeImage(ImageIO.read(archivo),1000,1000);
+				ImageWorker.resizeImage(archivo.getName(), ImageIO.read(archivo), ancho, alto, outputFolder);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			archivo.delete();
 		}
+		archivo.delete();
 	}
 
 }
