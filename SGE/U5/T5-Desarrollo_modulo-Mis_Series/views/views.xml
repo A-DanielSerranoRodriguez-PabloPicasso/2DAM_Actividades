@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="mis_series.tree_x_serie">
+      <field name="name">mis_series.x_serie.view.tree</field>
+      <field name="model">mis_series.x_serie</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="x_name"/>
+          <field name="x_fecha"/>
+          <field name="x_genero"/>
+          <field name="x_nota"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="mis_series.form_x_serie" model="ir.ui.view">
+      <field name="name">mis_series.form_x_serie.view.form</field>
+      <field name="model">mis_series.x_serie</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de serie">
+          <sheet>
+            <div>Nombre</div>
+            <h1>
+              <field name="x_name"/>
+            </h1>
+            <group string="Datos generales">
+              <group>
+                <field name="x_director"/>
+                <field name="x_duracion"/>
+                <field name="x_industria"/>
+              </group>
+              <group>
+                <field name="x_fecha"/>
+                <field name="x_genero"/>
+                <field name="x_nota"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="mis_series.tree_x_genero">
+      <field name="name">mis_series.x_genero.view.tree</field>
+      <field name="model">mis_series.x_genero</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="x_name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="mis_series.action_window_x_serie">
+      <field name="name">Series</field>
+      <field name="res_model">mis_series.x_serie</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="mis_series.action_window_x_genero">
+      <field name="name">Generos</field>
+      <field name="res_model">mis_series.x_genero</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Top menu item -->
+    <menuitem name="Mis series" id="mis_series.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="Series" id="mis_series.menu_x_serie" parent="mis_series.menu_root" action="mis_series.action_window_x_serie"/>
+    <menuitem name="Generos" id="mis_series.menu_x_genero" parent="mis_series.menu_root" action="mis_series.action_window_x_genero"/>
+  </data>
+</odoo>
