@@ -9,10 +9,12 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
+import models.Configuracion;
+
 public class WatchServiceUtil {
 
-	public static void monitorizarCarpeta(String rutaCarpeta) {
-		Path carpetaPath = Paths.get(rutaCarpeta);
+	public static void monitorizarCarpeta(Configuracion config) {
+		Path carpetaPath = Paths.get(config.getFolderPath());
 		WatchService ws = null;
 		WatchKey wk = null;
 		Thread th = null;
@@ -32,8 +34,8 @@ public class WatchServiceUtil {
 		try {
 			while ((wk = ws.take()) != null) {
 				for (WatchEvent<?> event : wk.pollEvents()) {
-					th = new FolderWorker(rutaCarpeta + "/" + event.context(), maxWidth, maxHeight,
-							outputFolder);
+					th = new FolderWorker(config.getFolderPath() + "/" + event.context(), config.getWidth(),
+							config.getHeight(), config.getOutputFolder());
 					th.start();
 				}
 				wk.reset();
