@@ -17,4 +17,8 @@ public class HibernateDAO {
 	public Session getSession() {
 		return sf.openSession();
 	}
+
+	public void closeSessionFactory(){
+		sf.close();
+	}
 }
