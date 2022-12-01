@@ -12,16 +12,23 @@ import utils.WatchServiceUtil;
 public class Dispatcher {
 
 	public static void main(String[] args) {
-		Properties props = new Properties();
+		/*
+		 * Se carga el archivo de propiedades del directorio de trabajo.
+		 * 
+		 * Se meten esas propiedades en una clase para administrarlas.
+		 * 
+		 * Se monitoriza la carpeta con esas propiedades.
+		 */
+		Properties prop = new Properties();
 		try {
-			props.load(new BufferedReader(new FileReader(new File("config.properties"))));
+			prop.load(new BufferedReader(new FileReader(new File("config.properties"))));
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("No hay archivo de configuracion.\nUsando valores por defecto\n");
 		}
 
-		Configuracion config = new Configuracion(props.getProperty("inputFolder"), props.getProperty("outputFolder"),
-				props.getProperty("maxWidth"), props.getProperty("maxHeight"));
-		
+		Configuracion config = new Configuracion(prop.getProperty("inputFolder"), prop.getProperty("outputFolder"),
+				prop.getProperty("maxWidth"), prop.getProperty("maxHeight"));
+
 		WatchServiceUtil.monitorizarCarpeta(config);
 	}
 

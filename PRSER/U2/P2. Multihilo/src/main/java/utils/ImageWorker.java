@@ -9,7 +9,17 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class ImageWorker {
-	public static Image resizeImage(String fileName, BufferedImage imagen, int width, int height, File outputFolder)
+	/**
+	 * Redimensiona una imagen siguiendo un ancho y largo específicos.
+	 * 
+	 * @param fileName     String
+	 * @param imagen       BufferedImage
+	 * @param width        int
+	 * @param height       int
+	 * @param outputFolder File
+	 * @throws IOException
+	 */
+	public static void resizeImage(String fileName, BufferedImage imagen, int width, int height, File outputFolder)
 			throws IOException {
 		if (imagen.getWidth() <= width && imagen.getHeight() <= height) {
 			width = imagen.getWidth();
@@ -28,8 +38,6 @@ public class ImageWorker {
 		g2d.drawImage(result, 0, 0, null);
 		g2d.dispose();
 		ImageIO.write(output, "jpg", new File(outputFolder.getAbsolutePath() + "/" + fileName));
-		
-		return output;
 	}
 
 }

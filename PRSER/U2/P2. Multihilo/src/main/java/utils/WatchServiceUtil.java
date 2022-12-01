@@ -13,6 +13,14 @@ import models.Configuracion;
 
 public class WatchServiceUtil {
 
+	/**
+	 * Crea un WatchService que vigila si se introducen archivos en una carpeta.
+	 * 
+	 * Mediante hilos, si los archivos son imagenes "jpg", se redimensionan. Si no,
+	 * se destruyen.
+	 * 
+	 * @param config Configuracion
+	 */
 	public static void monitorizarCarpeta(Configuracion config) {
 		Path carpetaPath = Paths.get(config.getFolderPath());
 		WatchService ws = null;
@@ -34,7 +42,7 @@ public class WatchServiceUtil {
 		try {
 			while ((wk = ws.take()) != null) {
 				for (WatchEvent<?> event : wk.pollEvents()) {
-					th = new FolderWorker(config.getFolderPath() + "/" + event.context(), config.getWidth(),
+					th = new FileWorker(config.getFolderPath() + "/" + event.context(), config.getWidth(),
 							config.getHeight(), config.getOutputFolder());
 					th.start();
 				}
