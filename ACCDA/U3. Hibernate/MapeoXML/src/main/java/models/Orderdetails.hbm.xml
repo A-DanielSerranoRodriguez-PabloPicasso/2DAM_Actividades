@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Orderdetails" optimistic-lock="none" table="orderdetails">
+        <composite-id class="models.OrderdetailsId" name="id">
+            <key-property name="orderNumber" type="int">
+                <column name="orderNumber"/>
+            </key-property>
+            <key-property name="productCode" type="string">
+                <column length="15" name="productCode"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="models.Orders" fetch="select" insert="false" name="orders" update="false">
+            <column name="orderNumber" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="models.Products" fetch="select" insert="false" name="products" update="false">
+            <column length="15" name="productCode" not-null="true"/>
+        </many-to-one>
+        <property name="quantityOrdered" type="int">
+            <column name="quantityOrdered" not-null="true"/>
+        </property>
+        <property name="priceEach" type="big_decimal">
+            <column name="priceEach" not-null="true" precision="10"/>
+        </property>
+        <property name="orderLineNumber" type="short">
+            <column name="orderLineNumber" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

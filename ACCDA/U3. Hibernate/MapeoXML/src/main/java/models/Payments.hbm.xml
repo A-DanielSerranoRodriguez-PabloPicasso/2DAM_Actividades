@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Payments" optimistic-lock="none" table="payments">
+        <composite-id class="models.PaymentsId" name="id">
+            <key-property name="customerNumber" type="int">
+                <column name="customerNumber"/>
+            </key-property>
+            <key-property name="checkNumber" type="string">
+                <column length="50" name="checkNumber"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="models.Customers" fetch="select" insert="false" name="customers" update="false">
+            <column name="customerNumber" not-null="true"/>
+        </many-to-one>
+        <property name="paymentDate" type="date">
+            <column length="10" name="paymentDate" not-null="true"/>
+        </property>
+        <property name="amount" type="big_decimal">
+            <column name="amount" not-null="true" precision="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Customers" optimistic-lock="none" table="customers">
+        <id name="customerNumber" type="int">
+            <column name="customerNumber"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Employees" fetch="select" name="employees">
+            <column name="salesRepEmployeeNumber"/>
+        </many-to-one>
+        <property name="customerName" type="string">
+            <column length="50" name="customerName" not-null="true"/>
+        </property>
+        <property name="contactLastName" type="string">
+            <column length="50" name="contactLastName" not-null="true"/>
+        </property>
+        <property name="contactFirstName" type="string">
+            <column length="50" name="contactFirstName" not-null="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="50" name="phone" not-null="true"/>
+        </property>
+        <property name="addressLine1" type="string">
+            <column length="50" name="addressLine1" not-null="true"/>
+        </property>
+        <property name="addressLine2" type="string">
+            <column length="50" name="addressLine2"/>
+        </property>
+        <property name="city" type="string">
+            <column length="50" name="city" not-null="true"/>
+        </property>
+        <property name="state" type="string">
+            <column length="50" name="state"/>
+        </property>
+        <property name="postalCode" type="string">
+            <column length="15" name="postalCode"/>
+        </property>
+        <property name="country" type="string">
+            <column length="50" name="country" not-null="true"/>
+        </property>
+        <property name="creditLimit" type="big_decimal">
+            <column name="creditLimit" precision="10"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="orderses" table="orders">
+            <key>
+                <column name="customerNumber" not-null="true"/>
+            </key>
+            <one-to-many class="models.Orders"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="paymentses" table="payments">
+            <key>
+                <column name="customerNumber" not-null="true"/>
+            </key>
+            <one-to-many class="models.Payments"/>
+        </set>
+    </class>
+</hibernate-mapping>

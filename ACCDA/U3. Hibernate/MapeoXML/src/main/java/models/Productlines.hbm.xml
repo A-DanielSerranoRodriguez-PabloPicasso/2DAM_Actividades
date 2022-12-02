@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Productlines" optimistic-lock="none" table="productlines">
+        <id name="productLine" type="string">
+            <column length="50" name="productLine"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="textDescription" type="string">
+            <column length="4000" name="textDescription"/>
+        </property>
+        <property name="htmlDescription" type="string">
+            <column length="16777215" name="htmlDescription"/>
+        </property>
+        <property name="image" type="binary">
+            <column name="image"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="productses" table="products">
+            <key>
+                <column length="50" name="productLine" not-null="true"/>
+            </key>
+            <one-to-many class="models.Products"/>
+        </set>
+    </class>
+</hibernate-mapping>

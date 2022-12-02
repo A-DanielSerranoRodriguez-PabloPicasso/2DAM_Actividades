@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Offices" optimistic-lock="none" table="offices">
+        <id name="officeCode" type="string">
+            <column length="10" name="officeCode"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="city" type="string">
+            <column length="50" name="city" not-null="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="50" name="phone" not-null="true"/>
+        </property>
+        <property name="addressLine1" type="string">
+            <column length="50" name="addressLine1" not-null="true"/>
+        </property>
+        <property name="addressLine2" type="string">
+            <column length="50" name="addressLine2"/>
+        </property>
+        <property name="state" type="string">
+            <column length="50" name="state"/>
+        </property>
+        <property name="country" type="string">
+            <column length="50" name="country" not-null="true"/>
+        </property>
+        <property name="postalCode" type="string">
+            <column length="15" name="postalCode" not-null="true"/>
+        </property>
+        <property name="territory" type="string">
+            <column length="10" name="territory" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="employeeses" table="employees">
+            <key>
+                <column length="10" name="officeCode" not-null="true"/>
+            </key>
+            <one-to-many class="models.Employees"/>
+        </set>
+    </class>
+</hibernate-mapping>

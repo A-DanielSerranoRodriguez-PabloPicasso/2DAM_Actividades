@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Orders" optimistic-lock="none" table="orders">
+        <id name="orderNumber" type="int">
+            <column name="orderNumber"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Customers" fetch="select" name="customers">
+            <column name="customerNumber" not-null="true"/>
+        </many-to-one>
+        <property name="orderDate" type="date">
+            <column length="10" name="orderDate" not-null="true"/>
+        </property>
+        <property name="requiredDate" type="date">
+            <column length="10" name="requiredDate" not-null="true"/>
+        </property>
+        <property name="shippedDate" type="date">
+            <column length="10" name="shippedDate"/>
+        </property>
+        <property name="status" type="string">
+            <column length="15" name="status" not-null="true"/>
+        </property>
+        <property name="comments" type="string">
+            <column length="65535" name="comments"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="orderdetailses" table="orderdetails">
+            <key>
+                <column name="orderNumber" not-null="true"/>
+            </key>
+            <one-to-many class="models.Orderdetails"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="classicmodels" name="models.Employees" optimistic-lock="none" table="employees">
+        <id name="employeeNumber" type="int">
+            <column name="employeeNumber"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Employees" fetch="select" name="employees">
+            <column name="reportsTo"/>
+        </many-to-one>
+        <many-to-one class="models.Offices" fetch="select" name="offices">
+            <column length="10" name="officeCode" not-null="true"/>
+        </many-to-one>
+        <property name="lastName" type="string">
+            <column length="50" name="lastName" not-null="true"/>
+        </property>
+        <property name="firstName" type="string">
+            <column length="50" name="firstName" not-null="true"/>
+        </property>
+        <property name="extension" type="string">
+            <column length="10" name="extension" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="100" name="email" not-null="true"/>
+        </property>
+        <property name="jobTitle" type="string">
+            <column length="50" name="jobTitle" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="employeeses" table="employees">
+            <key>
+                <column name="reportsTo"/>
+            </key>
+            <one-to-many class="models.Employees"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="customerses" table="customers">
+            <key>
+                <column name="salesRepEmployeeNumber"/>
+            </key>
+            <one-to-many class="models.Customers"/>
+        </set>
+    </class>
+</hibernate-mapping>

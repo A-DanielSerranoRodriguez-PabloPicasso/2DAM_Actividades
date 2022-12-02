@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 dic 2022 9:22:28 by Hibernate Tools 5.5.9.Final -->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="classicmodels" name="models.Products" optimistic-lock="none" table="products">
+		<id name="productCode" type="string">
+			<column length="15" name="productCode" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one class="models.Productlines" fetch="select" name="productlines">
+			<column length="50" name="productLine" not-null="true" />
+		</many-to-one>
+		<property name="productName" type="string">
+			<column length="70" name="productName" not-null="true" />
+		</property>
+		<property name="productScale" type="string">
+			<column length="10" name="productScale" not-null="true" />
+		</property>
+		<property name="productVendor" type="string">
+			<column length="50" name="productVendor" not-null="true" />
+		</property>
+		<property name="productDescription" type="string">
+			<column length="65535" name="productDescription" not-null="true" />
+		</property>
+		<property name="quantityInStock" type="short">
+			<column name="quantityInStock" not-null="true" />
+		</property>
+		<property name="buyPrice" type="big_decimal">
+			<column name="buyPrice" not-null="true" precision="10" />
+		</property>
+		<property name="msrp" type="big_decimal">
+			<column name="MSRP" not-null="true" precision="10" />
+		</property>
+		<set fetch="select" inverse="true" lazy="true" name="orderdetailses" table="orderdetails">
+			<key>
+				<column length="15" name="productCode" not-null="true" />
+			</key>
+			<one-to-many class="models.Orderdetails" />
+		</set>
+	</class>
+</hibernate-mapping>
