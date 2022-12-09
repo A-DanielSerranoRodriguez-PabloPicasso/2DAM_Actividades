@@ -38,4 +38,9 @@
 			<one-to-many class="models.Orderdetails" />
 		</set>
 	</class>
+	<query name="getProducts">
+		<![CDATA[
+			SELECT p FROM Products p
+		]]>
+	</query>
 </hibernate-mapping>

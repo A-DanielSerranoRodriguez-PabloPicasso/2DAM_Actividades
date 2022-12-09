@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 dic 2022 9:21:41 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="bd_neptuno" name="models.TotalesMensuales" optimistic-lock="none" table="totales_mensuales">
+        <comment>VIEW</comment>
+        <composite-id class="models.TotalesMensualesId" name="id">
+            <key-property name="anyo" type="java.lang.Integer">
+                <column name="anyo"/>
+            </key-property>
+            <key-property name="mes" type="java.lang.Integer">
+                <column name="mes"/>
+            </key-property>
+            <key-property name="fecha" type="date">
+                <column length="10" name="fecha"/>
+            </key-property>
+            <key-property name="cargo" type="big_integer">
+                <column name="cargo" precision="38" scale="0"/>
+            </key-property>
+            <key-property name="importe" type="java.lang.Double">
+                <column name="importe" precision="22" scale="0"/>
+            </key-property>
+            <key-property name="total" type="java.lang.Double">
+                <column name="total" precision="22" scale="0"/>
+            </key-property>
+            <key-property name="numPedidos" type="long">
+                <column name="num_pedidos"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

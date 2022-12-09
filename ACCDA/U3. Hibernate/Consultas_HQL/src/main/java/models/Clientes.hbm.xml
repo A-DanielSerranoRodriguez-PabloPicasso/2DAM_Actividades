@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 dic 2022 9:21:41 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="bd_neptuno" name="models.Clientes" optimistic-lock="none" table="clientes">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="codigo" type="string">
+            <column length="5" name="codigo" not-null="true" unique="true"/>
+        </property>
+        <property name="empresa" type="string">
+            <column length="40" name="empresa" not-null="true" unique="true"/>
+        </property>
+        <property name="contacto" type="string">
+            <column length="30" name="contacto"/>
+        </property>
+        <property name="cargoContacto" type="string">
+            <column length="30" name="cargo_contacto"/>
+        </property>
+        <property name="direccion" type="string">
+            <column length="60" name="direccion"/>
+        </property>
+        <property name="ciudad" type="string">
+            <column length="15" name="ciudad"/>
+        </property>
+        <property name="region" type="string">
+            <column length="15" name="region"/>
+        </property>
+        <property name="cp" type="string">
+            <column length="10" name="cp"/>
+        </property>
+        <property name="pais" type="string">
+            <column length="15" name="pais"/>
+        </property>
+        <property name="telefono" type="string">
+            <column length="24" name="telefono"/>
+        </property>
+        <property name="fax" type="string">
+            <column length="24" name="fax"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="pedidoses" table="pedidos">
+            <key>
+                <column name="cliente_id" not-null="true"/>
+            </key>
+            <one-to-many class="models.Pedidos"/>
+        </set>
+    </class>
+</hibernate-mapping>

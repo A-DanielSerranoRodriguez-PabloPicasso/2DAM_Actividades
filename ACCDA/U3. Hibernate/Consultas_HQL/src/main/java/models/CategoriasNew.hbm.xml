@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 dic 2022 9:21:41 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="bd_neptuno" name="models.CategoriasNew" optimistic-lock="none" table="categorias_new">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="categoria" type="string">
+            <column length="15" name="categoria" not-null="true" unique="true"/>
+        </property>
+        <property name="descripcion" type="string">
+            <column length="65535" name="descripcion"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="productosNews" table="productos_new">
+            <key>
+                <column name="categoria_id"/>
+            </key>
+            <one-to-many class="models.ProductosNew"/>
+        </set>
+    </class>
+</hibernate-mapping>

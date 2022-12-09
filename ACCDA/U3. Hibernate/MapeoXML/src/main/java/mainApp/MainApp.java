@@ -13,7 +13,7 @@ public class MainApp {
 	public static void main(String[] args) {
 		HibernateDAO hDao = new HibernateDAO();
 		Session session = hDao.getSession();
-		Query<Products> query = session.createQuery("select p from Products p");
+		Query<Products> query = session.getNamedQuery("getProducts");
 		
 		List<Products> productos = query.list();
 		

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 dic 2022 9:21:41 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="bd_neptuno" name="models.Detalles" optimistic-lock="none" table="detalles">
+        <composite-id class="models.DetallesId" name="id">
+            <key-property name="pedidoId" type="int">
+                <column name="pedido_id"/>
+            </key-property>
+            <key-property name="productoId" type="int">
+                <column name="producto_id"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="models.Pedidos" fetch="select" insert="false" name="pedidos" update="false">
+            <column name="pedido_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="models.Productos" fetch="select" insert="false" name="productos" update="false">
+            <column name="producto_id" not-null="true"/>
+        </many-to-one>
+        <property name="precioUnidad" type="big_decimal">
+            <column name="precio_unidad" scale="4"/>
+        </property>
+        <property name="cantidad" type="java.lang.Short">
+            <column name="cantidad"/>
+        </property>
+        <property name="descuento" type="java.lang.Double">
+            <column name="descuento" precision="7"/>
+        </property>
+    </class>
+</hibernate-mapping>

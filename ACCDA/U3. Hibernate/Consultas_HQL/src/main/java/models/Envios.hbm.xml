@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 dic 2022 9:21:41 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="bd_neptuno" name="models.Envios" optimistic-lock="none" table="envios">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="empresa" type="string">
+            <column length="40" name="empresa" not-null="true" unique="true"/>
+        </property>
+        <property name="telefono" type="string">
+            <column length="24" name="telefono"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="pedidoses" table="pedidos">
+            <key>
+                <column name="envio_id"/>
+            </key>
+            <one-to-many class="models.Pedidos"/>
+        </set>
+    </class>
+</hibernate-mapping>

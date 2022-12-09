@@ -1,0 +1,33 @@
+datos001.txt: Error en el campo referencia: El campo es obligatorio
+datos002.txt:Error en el campo referencia: El campo es obligatorio
+datos003.txt:Error en el campo referencia: El campo no tiene el formato correcto
+datos004.txt:Error en el campo referencia: El campo no tiene el formato correcto
+datos005.txt:Error en el campo referencia: Los dos primeros d?gitos deben estar comprendidos entre 34 y 67
+datos006.txt:Error en el campo nombre: El campo es obligatorio
+datos007.txt:Error en el campo nombre: El campo es obligatorio
+datos008.txt:Error en el campo nombre: El contenido excede la longitud m?xima (200)
+datos009.txt:Error en el campo precio: El campo es obligatorio
+datos010.txt:Error en el campo precio: El campo es obligatorio
+datos011.txt:Error en el campo precio: El valor est? fuera del rango indicado (mayor que cero)
+datos012.txt:Error en el campo precio: El campo excede el n?mero de decimales (2)
+datos013.txt:Error en el campo marca: El contenido excede la longitud m?xima (100)
+datos014.txt:Error en el campo puntuacion: El campo es obligatorio
+datos015.txt:Error en el campo puntuacion: El valor est? fuera del rango indicado (0.0 - 5.0)
+datos016.txt:Error en el campo puntuacion: El valor est? fuera del rango indicado (0.0 - 5.0)
+datos017.txt:Error en el campo fecha_inicio_venta: El valor no es una fecha v?lida en el formato dd/mm/aaaa
+datos018.txt:Error en el campo dominio: El campo es obligatorio
+datos019.txt:Error en el campo dominio: El campo es obligatorio
+datos020.txt:Error en el campo dominio: El formato del campo no es correcto
+datos021.txt:Error en el campo dominio: El formato del campo no es correcto
+datos022.txt:Error en el campo dominio: El formato del campo no es correcto
+datos023.txt:Error en el campo url: El campo es obligatorio
+datos024.txt:Error en el campo url: El campo es obligatorio
+datos025.txt:Error en el campo url: El valor no es una URL v?lida
+datos026.txt:Error en el campo correo_pedidos: El campo es obligatorio
+datos027.txt:Error en el campo correo_pedidos: El campo es obligatorio
+datos028.txt:Error en el campo correo_pedidos: El valor no es una dirección de correo electrónico v?lida
+datos029.txt:Error en el campo correo_pedidos: El valor no es una dirección de correo electrónico v?lida
+datos030.txt:Error en el campo puntos_fuertes: El valor Precia no est? permitido en la lista de valores
+datos031.txt:Error en el campo puntos_fuertes: El n?mero de valores no es correcto. Debe estar entre 1 y 5
+datos032.txt:Error en el campo puntos_debiles: El valor Sostenibile no est? permitido en la lista de valores
+datos033.txt:Error en el campo puntos_debiles: Hay valores duplicados en la lista

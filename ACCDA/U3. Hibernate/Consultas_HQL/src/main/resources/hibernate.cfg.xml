@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1/bd_neptuno</property>
+		<property name="connection.username">accda</property>
+		<property name="connection.password">accda</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.hbm2ddl.auto">none</property>
+
+		<mapping resource="models/CategoriasNew.hbm.xml" />
+		<mapping resource="models/Detalles.hbm.xml" />
+		<mapping resource="models/Pedidos.hbm.xml" />
+		<mapping resource="models/Empleados.hbm.xml" />
+		<mapping resource="models/TotalesMensuales.hbm.xml" />
+		<mapping resource="models/ProductosNew.hbm.xml" />
+		<mapping resource="models/Clavesanteriores.hbm.xml" />
+		<mapping resource="models/Categorias.hbm.xml" />
+		<mapping resource="models/Envios.hbm.xml" />
+		<mapping resource="models/Usuarios.hbm.xml" />
+		<mapping resource="models/VNueva.hbm.xml" />
+		<mapping resource="models/VEmpleados1.hbm.xml" />
+		<mapping resource="models/ProveedoresNew.hbm.xml" />
+		<mapping resource="models/Proveedores.hbm.xml" />
+		<mapping resource="models/Importes.hbm.xml" />
+		<mapping resource="models/Productos.hbm.xml" />
+		<mapping resource="models/Clientes.hbm.xml" />
+		<mapping resource="models/Totales.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>
