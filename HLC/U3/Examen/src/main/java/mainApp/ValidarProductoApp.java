@@ -5,7 +5,7 @@ import utils.ValidationWorker;
 public class ValidarProductoApp {
 
 	public static void main(String[] args) {
-		ValidationWorker vw = new ValidationWorker("src/main/resources/datos/datos.txt");
+		ValidationWorker vw = new ValidationWorker("src/main/resources/datos/conErrores/datos001.txt");
 		
 		vw.validaCorreoPedidos();
 		vw.validaDominio();

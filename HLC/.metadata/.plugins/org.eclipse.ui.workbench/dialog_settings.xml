@@ -22,4 +22,6 @@
 			<item value="org.eclipse.xtend.ide.wizards"/>
 		</list>
 	</section>
+	<section name="org.eclipse.ui.preferences.keysPreferencePage">
+	</section>
 </section>

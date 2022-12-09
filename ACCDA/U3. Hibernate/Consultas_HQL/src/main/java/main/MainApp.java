@@ -35,7 +35,7 @@ public class MainApp {
 //		// NO HAY REGISTROS EN LA BASE DE DATOS. CAMBIAR 1997 POR 1996 Y 5 POR 8 PARA
 //		// COMPROBAR.
 //		query = session.createQuery(
-//				"select d.pedidos from Detalles d inner join d.pedidos inner join d.productos where year(d.pedidos.fechaPedido)=1997 and month(d.pedidos.fechaPedido)=5");
+//				"select d from Detalles d inner join d.pedidos inner join d.productos where year(d.pedidos.fechaPedido)=1997 and month(d.pedidos.fechaPedido)=5");
 //		List<Pedidos> pedidos = query.list();
 //		for (Pedidos ped : pedidos) {
 //			System.out.print("N. pedido: " + ped.getId() + " || ");
