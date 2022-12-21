@@ -19,7 +19,8 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="utils.BloqueDatosEnFichero"/>
     <fullyQualifiedTypeName name="utils.ValidationWorker"/>
-    <fullyQualifiedTypeName name="utils.Acondicionador"/>
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
     <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+    <fullyQualifiedTypeName name="utils.Acondicionador"/>
 </qualifiedTypeNameHistroy>
