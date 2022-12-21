@@ -22,5 +22,19 @@
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
     <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
     <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="utils.Acondicionador"/>
+=======
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxDriver"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.devtools.v108.profiler.model.Profile"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.ProfilesIni"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxBinary"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxOptions"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxProfile"/>
+    <fullyQualifiedTypeName name="java.lang.CharSequence"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+>>>>>>> 13047cdba1e689804310967eecc079655aebe5fc
 </qualifiedTypeNameHistroy>

@@ -104,7 +104,7 @@ public class Acondicionador {
 			result.append(String.format("%02x", b));
 		}
 
-		if (siguienteCaracter.matches("[0-9]"))
+		if (siguienteCaracter.matches("[0-9a-fA-F]"))
 			result.append(" ");
 
 		return result.toString();
