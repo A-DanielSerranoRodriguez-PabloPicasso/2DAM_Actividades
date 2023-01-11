@@ -19,9 +19,12 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="utils.BloqueDatosEnFichero"/>
     <fullyQualifiedTypeName name="utils.ValidationWorker"/>
-    <fullyQualifiedTypeName name="utils.Acondicionador"/>
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
     <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+<<<<<<< HEAD
+    <fullyQualifiedTypeName name="utils.Acondicionador"/>
+=======
     <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxDriver"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
@@ -33,4 +36,5 @@
     <fullyQualifiedTypeName name="java.lang.CharSequence"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+>>>>>>> 13047cdba1e689804310967eecc079655aebe5fc
 </qualifiedTypeNameHistroy>

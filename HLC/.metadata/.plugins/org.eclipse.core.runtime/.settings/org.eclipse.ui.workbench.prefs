@@ -2,6 +2,11 @@
 //org.eclipse.ui.commands/state/org.eclipse.wst.xml.views.XPathView.processor.xpathprocessor/org.eclipse.ui.commands.radioState=xpath10
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=;org.eclipse.m2e.discovery;
 eclipse.preferences.version=1
+<<<<<<< HEAD
+org.eclipse.ui.workbench.ACTIVE_NOFOCUS_TAB_BG_START=36,36,36
+org.eclipse.ui.workbench.ACTIVE_TAB_BG_START=36,36,36
+org.eclipse.ui.workbench.INACTIVE_TAB_BG_START=51,51,51
+=======
 org.eclipse.compare.contentmergeviewer.TextMergeViewer=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.debug.ui.DetailPaneFont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.debug.ui.MemoryViewTableFont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
@@ -24,3 +29,4 @@ org.eclipse.ui.workbench.INACTIVE_TAB_BG_START=51,51,51
 org.eclipse.wst.sse.ui.textfont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.xtend.ui.editors.textfont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 terminal.views.view.font.definition=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
+>>>>>>> 13047cdba1e689804310967eecc079655aebe5fc

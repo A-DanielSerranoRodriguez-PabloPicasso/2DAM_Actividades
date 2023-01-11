@@ -4,7 +4,12 @@ configurationInstallLocation=/mnt/3TB/FP_DAM/Utils/eclipse/
 eclipse.preferences.version=1
 iconcolormode=primary
 includeThemingInOomph=false
+<<<<<<< HEAD
+last.download.attempt.time=1671204403562
+lastConfiguration=1671204372467
+=======
 last.download.attempt.time=1671624979907
 lastConfiguration=1671624970373
+>>>>>>> 13047cdba1e689804310967eecc079655aebe5fc
 newinstall=true
 workbench.theme=Dark Windows 11
