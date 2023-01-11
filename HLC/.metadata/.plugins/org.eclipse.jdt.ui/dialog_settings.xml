@@ -5,6 +5,7 @@
 	<item key="org.eclipse.jdt.ui.last.selected.create.moduleinfo.comments" value="false"/>
 	<item key="org.eclipse.jdt.ui.last.selected.create.moduleinfo" value="false"/>
 	<item key="org.eclipse.jdt.ui.last.external.project" value="C:\Users\alumnado\Documents\Actividades\HLC\U3\Acondicionamiento_Salidas"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="/mnt/3TB/FP_DAM/SEGUNDO/Actividades/HLC/VideoGrabber/selenium-java-4.7.2/jar"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -45,14 +46,17 @@
 	</section>
 	<section name="FatJarPackageWizard">
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
-		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="C:\Users\alumnado\Documents\Actividades\HLC"/>
-		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
-		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="FirmaApp - Examen"/>
-		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\alumnado\Documents\Actividades\HLC\U2\Daniel Serrano Rodríguez - Examen U2.jar"/>
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="/mnt/3TB/FP_DAM/SEGUNDO/Actividades/HLC/C:\Users\alumnado\Documents\Actividades\HLC.xml"/>
+		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="2"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="MainApp - Grabber"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="/home/danielsr/Test.jar"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/home/danielsr/Test.jar"/>
 			<item value="C:\Users\alumnado\Documents\Actividades\HLC\U2\Daniel Serrano Rodríguez - Examen U2.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="/mnt/3TB/FP_DAM/SEGUNDO/Actividades/HLC/C:\Users\alumnado\Documents\Actividades\HLC.xml"/>
+			<item value="C:\Users\alumnado\Documents\Actividades\HLC.xml"/>
 			<item value=".xml"/>
 		</list>
 	</section>
@@ -90,6 +94,28 @@
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="ClasspathContainerSelectionPage">
-		<item key="index" value="4"/>
+		<item key="index" value="8"/>
+	</section>
+	<section name="org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History/&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="9"/>
+			<item key="DIALOG_Y_ORIGIN" value="41"/>
+			<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>
+		</section>
+	</section>
+	<section name="ProblemSeveritiesConfigurationBlock">
+		<item key="expanded0" value="true"/>
+		<item key="expanded1" value="false"/>
+		<item key="expanded2" value="false"/>
+		<item key="expanded3" value="false"/>
+		<item key="expanded4" value="false"/>
+		<item key="expanded5" value="false"/>
+		<item key="expanded6" value="false"/>
+		<item key="expanded7" value="false"/>
+		<item key="expanded8" value="false"/>
 	</section>
 </section>

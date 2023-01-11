@@ -1,40 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.jcp.xml.dsig.internal.DigesterOutputStream"/>
-    <fullyQualifiedTypeName name="java.security.DigestOutputStream"/>
-    <fullyQualifiedTypeName name="java.security.DigestInputStream"/>
-    <fullyQualifiedTypeName name="java.security.Key"/>
-    <fullyQualifiedTypeName name="java.security.KeyStore"/>
-    <fullyQualifiedTypeName name="java.security.cert.Certificate"/>
-    <fullyQualifiedTypeName name="java.util.Base64"/>
-    <fullyQualifiedTypeName name="utils.CriptografiaWorker"/>
-    <fullyQualifiedTypeName name="java.io.ObjectInputStream.GetField"/>
-    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="java.text.DateFormat"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="utils.FileWorker"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="utils.BloqueDatosEnFichero"/>
-    <fullyQualifiedTypeName name="utils.ValidationWorker"/>
-    <fullyQualifiedTypeName name="java.net.URLEncoder"/>
-    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
-    <fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="utils.Acondicionador"/>
-=======
-    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxDriver"/>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.devtools.v108.profiler.model.Profile"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="org.checkerframework.checker.units.qual.radians"/>
+    <fullyQualifiedTypeName name="utils.Grabber"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.firefox.ProfilesIni"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxBinary"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxOptions"/>
-    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxProfile"/>
-    <fullyQualifiedTypeName name="java.lang.CharSequence"/>
-    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
->>>>>>> 13047cdba1e689804310967eecc079655aebe5fc
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxDriverLogLevel"/>
+    <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="com.google.common.io.Files"/>
 </qualifiedTypeNameHistroy>
