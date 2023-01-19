@@ -7,29 +7,40 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
+
+import utils.ArrayUtils;
+import utils.StringUtils;
 
 public class ClientApp {
+	private static int PUERTO_LOCAL = 3333, PUERTO_REMOTO = 2222;
 
 	public static void main(String[] args) {
-		String mensaje;
-		try {
-			DatagramSocket dgs = new DatagramSocket(1233);
-			dgs.connect(InetAddress.getLoopbackAddress(), 1234);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		DatagramPacket dgpEnviar, dgpRecibido;
+		String pregunta, respuesta;
+		byte[] buffer, bPregunta;
+
+		try (DatagramSocket dgs = new DatagramSocket(PUERTO_LOCAL)) {
+			dgs.connect(InetAddress.getLoopbackAddress(), PUERTO_REMOTO);
 
 			do {
-				byte[] bytes = new byte[1024];
-				DatagramPacket dgpRecibido = new DatagramPacket(bytes, bytes.length);
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				mensaje = br.readLine();
-				DatagramPacket dgp = new DatagramPacket(mensaje.getBytes(), mensaje.getBytes().length);
-				dgs.setSendBufferSize(0);
-				dgs.send(dgp);
-				if (!mensaje.isEmpty()) {
+				pregunta = br.readLine();
+				bPregunta = pregunta.getBytes();
+				dgpEnviar = new DatagramPacket(bPregunta, bPregunta.length);
+
+				buffer = new byte[254];
+				dgpRecibido = new DatagramPacket(buffer, buffer.length);
+
+				if (!pregunta.isEmpty()) {
+					dgs.send(dgpEnviar);
 					dgs.receive(dgpRecibido);
-					System.out.println(new String(dgpRecibido.getData(), StandardCharsets.UTF_8));
+
+					buffer = ArrayUtils.truncar(dgpRecibido.getData());
+					respuesta = StringUtils.standardUtf8(buffer);
+
+					System.out.println(respuesta);
 				}
-			} while (!mensaje.isEmpty());
+			} while (!pregunta.isEmpty());
 
 			dgs.close();
 		} catch (SocketException e) {

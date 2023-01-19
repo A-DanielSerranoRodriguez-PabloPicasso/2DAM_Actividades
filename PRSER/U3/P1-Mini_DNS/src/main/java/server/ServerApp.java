@@ -9,50 +9,39 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
 import java.util.Properties;
 
+import utils.ArrayUtils;
+
 public class ServerApp {
+	private static int PUERTO_LOCAL = 2222, PUERTO_REMOTO = 3333;
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
-		String mensaje = "", respuesta = "No se ha encontrado", prop;
+		DatagramPacket dgpRecibido;
+		String mensaje, respuesta = "El nombre no se encuentra", prop;
+		byte[] buffer, bRespuesta;
 
-		try {
-			byte[] buffer, dataReceived;
-			DatagramPacket dgpSend;
-			DatagramSocket dgs = new DatagramSocket(1234);
-			dgs.connect(InetAddress.getLoopbackAddress(), 1233);
-
+		try (DatagramSocket dgs = new DatagramSocket(PUERTO_LOCAL)) {
+			dgs.connect(InetAddress.getLoopbackAddress(), PUERTO_REMOTO);
 			props.load(new BufferedReader(new FileReader(new File("dns.properties"))));
-			System.out.println(props.getProperty("server"));
 
 			do {
-				String localMessage="";
-				int bufferSize = dgs.getReceiveBufferSize();
-				buffer = new byte[bufferSize];
-				dgpSend = new DatagramPacket(buffer, buffer.length);
-				dgs.receive(dgpSend);
-				dataReceived = dgpSend.getData();
-				mensaje = new String(dataReceived, StandardCharsets.UTF_8);
-				mensaje = mensaje.replaceAll("/n","");
-				System.out.println(mensaje);
-				for (int i = 0; i < mensaje.length(); i++) {
-					System.out.println(mensaje.charAt(i));
-				}
-				System.out.println(props.getProperty(mensaje));
-				if (!mensaje.isEmpty()) {
-					props.forEach((t, u) -> System.out.println(t+": "+ u));
-					System.out.println(props.getProperty(mensaje));
-					if ((prop = props.getProperty(mensaje)) != null)
-						respuesta = prop;
+				buffer = new byte[254];
+				dgpRecibido = new DatagramPacket(buffer, buffer.length);
 
-					dgs.send(new DatagramPacket(respuesta.getBytes(), respuesta.getBytes().length));
-				}
+				dgs.receive(dgpRecibido);
+				buffer = dgpRecibido.getData();
+				buffer = ArrayUtils.truncar(buffer);
 
-			} while (!mensaje.isEmpty());
+				mensaje = new String(buffer, StandardCharsets.UTF_8);
+				if ((prop = props.getProperty(mensaje)) != null)
+					respuesta = prop;
 
-			dgs.close();
+				bRespuesta = respuesta.getBytes();
+				dgs.send(new DatagramPacket(bRespuesta, bRespuesta.length));
+			} while (true);
+
 		} catch (SocketException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
