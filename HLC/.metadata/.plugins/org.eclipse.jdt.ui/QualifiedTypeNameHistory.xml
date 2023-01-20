@@ -11,4 +11,5 @@
     <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
     <fullyQualifiedTypeName name="java.io.FileWriter"/>
     <fullyQualifiedTypeName name="com.google.common.io.Files"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.otp.GeneradorHOTP"/>
 </qualifiedTypeNameHistroy>
