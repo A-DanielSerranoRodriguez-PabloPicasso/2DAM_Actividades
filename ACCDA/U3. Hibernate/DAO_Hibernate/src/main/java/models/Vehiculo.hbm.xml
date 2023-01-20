@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="concesionario" name="models.Vehiculo" optimistic-lock="none" table="vehiculo">
+        <id name="id" type="int">
+            <column name="Id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Concesionario" fetch="select" name="concesionario">
+            <column name="codConcesionario"/>
+        </many-to-one>
+        <property name="nombreComercial" type="string">
+            <column length="40" name="NombreComercial" not-null="true"/>
+        </property>
+        <property name="marca" type="string">
+            <column length="30" name="Marca"/>
+        </property>
+        <property name="modelo" type="string">
+            <column length="30" name="Modelo"/>
+        </property>
+        <property name="tipo" type="string">
+            <column length="30" name="Tipo" not-null="true"/>
+        </property>
+        <property name="color" type="string">
+            <column length="30" name="Color"/>
+        </property>
+        <property name="potencia" type="java.lang.Integer">
+            <column name="Potencia"/>
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="Precio" precision="22" scale="0"/>
+        </property>
+        <property name="disponible" type="java.lang.Boolean">
+            <column name="Disponible"/>
+        </property>
+        <property name="cantidadStock" type="java.lang.Integer">
+            <column name="CantidadStock"/>
+        </property>
+        <property name="fechaEntradaConcesionario" type="date">
+            <column length="10" name="FechaEntradaConcesionario"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="proposicions" table="proposicion">
+            <key>
+                <column name="idVehiculo" not-null="true"/>
+            </key>
+            <one-to-many class="models.Proposicion"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="registroventases" table="registroventas">
+            <key>
+                <column name="codVehiculo"/>
+            </key>
+            <one-to-many class="models.Registroventas"/>
+        </set>
+        <set fetch="select" inverse="false" lazy="true" name="clientes" table="clietnevehiculo">
+            <key>
+                <column name="idVehiculo" not-null="true"/>
+            </key>
+            <many-to-many entity-name="models.Cliente">
+                <column name="idCliente" not-null="true"/>
+            </many-to-many>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="reparas" table="repara">
+            <key>
+                <column name="idVehiculo" not-null="true"/>
+            </key>
+            <one-to-many class="models.Repara"/>
+        </set>
+    </class>
+</hibernate-mapping>

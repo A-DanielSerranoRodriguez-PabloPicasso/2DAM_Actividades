@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="concesionario" name="models.Venta" optimistic-lock="none" table="venta">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Usuario" fetch="select" name="usuario">
+            <column name="codUsuario"/>
+        </many-to-one>
+        <set fetch="select" inverse="true" lazy="true" name="proposicions" table="proposicion">
+            <key>
+                <column name="idVenta" not-null="true"/>
+            </key>
+            <one-to-many class="models.Proposicion"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="registroventases" table="registroventas">
+            <key>
+                <column name="codVenta"/>
+            </key>
+            <one-to-many class="models.Registroventas"/>
+        </set>
+    </class>
+</hibernate-mapping>

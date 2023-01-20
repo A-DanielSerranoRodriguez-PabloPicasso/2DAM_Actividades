@@ -1,0 +1,3 @@
+default.configuration=nttdatacenters-hibernate-t1-ada
+eclipse.preferences.version=1
+hibernate3.enabled=true

@@ -1,13 +1,12 @@
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=13047cdba1e689804310967eecc079655aebe5fc
 applyBackground=false
 approved.defs.file.last.changed.time=1649720987000
-configurationInstallLocation=/mnt/3TB/FP_DAM/Utils/eclipse/
+configurationInstallLocation=/C\:/Users/alumnado/Documents/Eclipse/
+ct.upsell.display.after=1673783879054
 eclipse.preferences.version=1
 iconcolormode=primary
 includeThemingInOomph=false
-last.download.attempt.time=1672919672942
-lastConfiguration=1672919660524
-newinstall=true
-workbench.theme=Dark Windows 11
+last.download.attempt.time=1674199734741
+lastConfiguration=1674199727218
+newinstall=false
+showWelcomeDialog=false
+workbench.theme=Dark Gray
