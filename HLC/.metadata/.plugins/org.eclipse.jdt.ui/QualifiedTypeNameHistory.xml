@@ -10,11 +10,21 @@
     <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
     <fullyQualifiedTypeName name="java.io.FileWriter"/>
     <fullyQualifiedTypeName name="com.google.common.io.Files"/>
-    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.otp.GeneradorHOTP"/>
     <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.core.SistemaSeguridad"/>
-    <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.autenticacion.Autenticador"/>
     <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.controlacceso.ControlAcceso"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
     <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.DesafioOtp"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.autenticacion.Autenticador"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.autenticacion.RespuestaDesafio"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.persistencia.GestorPersistenciaSqlite"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.core.GestorPersistencia"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.models.GestorLogin"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.DesafioHotp"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.RespuestaDesafioHopt"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.seguridad.SistemaSeguridadHotp"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.AutenticadorHotp"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.controlacceso.ControlAccesoSimple"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.models.PersistenciaLogin"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.otp.GeneradorHOTP"/>
 </qualifiedTypeNameHistroy>
