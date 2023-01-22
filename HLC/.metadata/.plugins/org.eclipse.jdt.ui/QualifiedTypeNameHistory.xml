@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="org.checkerframework.checker.units.qual.radians"/>
     <fullyQualifiedTypeName name="utils.Grabber"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.firefox.ProfilesIni"/>
@@ -12,4 +11,10 @@
     <fullyQualifiedTypeName name="java.io.FileWriter"/>
     <fullyQualifiedTypeName name="com.google.common.io.Files"/>
     <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.otp.GeneradorHOTP"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.core.SistemaSeguridad"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.autenticacion.Autenticador"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.seguridad.controlacceso.ControlAcceso"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.auth.DesafioOtp"/>
 </qualifiedTypeNameHistroy>
