@@ -8,7 +8,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.nio.file.FileSystems;
 import java.util.Scanner;
 
 import psp.ud03.practica02.utils.ArrayUtils;
@@ -49,14 +48,20 @@ public class MainFileClientApp {
 
 				respuesta = StringUtils.standardUtf8(ArrayUtils.truncar(buffer));
 
+				System.out.println(respuesta);
+
 				if (respuesta.equals("ERR")) {
 					System.out.println("Error, archivo no encontrado");
 				} else {
-					String separador = FileSystems.getDefault().getSeparator(), nombreArchivo;
+					String separador, nombreArchivo, osName = System.getProperty("os.name");
+
+					if (osName.matches("^Windows.+"))
+						separador = "\\\\";
+					else
+						separador = "/";
+
 					String[] conjunto = mensaje.split(separador);
 					nombreArchivo = conjunto[conjunto.length - 1];
-
-					System.out.println(respuesta);
 
 					bos = new BufferedOutputStream(
 							new FileOutputStream(new File(DIRECTORIO_DEFECTO + separador + nombreArchivo)));
