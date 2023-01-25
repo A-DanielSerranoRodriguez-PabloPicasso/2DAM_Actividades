@@ -3,6 +3,8 @@ package psp.ud03.practica02;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -18,29 +20,54 @@ public class MainFileServerApp {
 		DatagramPacket dgpPeticion;
 		byte[] buffer = new byte[1024];
 
-		try (DatagramSocket dgs = new DatagramSocket(PUERTO_LOCAL)) {
+		try (ServerSocket tcpServerSocket = new ServerSocket(PUERTO_LOCAL)) {
 			while (true) {
-				dgpPeticion = new DatagramPacket(buffer, buffer.length);
-				dgs.receive(dgpPeticion);
-				PUERTO_REMOTO = dgpPeticion.getPort();
-				String ruta = StringUtils.standardUtf8(ArrayUtils.truncar(dgpPeticion.getData()));
+				Socket tcpSocket = tcpServerSocket.accept();
 
-				FileSender fs = new FileSender(dgs, PUERTO_REMOTO, ruta);
-				
-				fs.start();
-				
-				try {
-					fs.join();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+//				dgpPeticion = new DatagramPacket(buffer, buffer.length);
+//				dgs.receive(dgpPeticion);
+//				PUERTO_REMOTO = dgpPeticion.getPort();
+//				String ruta = StringUtils.standardUtf8(ArrayUtils.truncar(dgpPeticion.getData()));
+//
+//				FileSender fs = new FileSender(dgs, PUERTO_REMOTO, ruta);
+//				
+//				fs.start();
+//				
+//				try {
+//					fs.join();
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
 			}
-		} catch (SocketException e) {
-			e.printStackTrace();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (UnknownHostException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
+
+//		try (DatagramSocket dgs = new DatagramSocket(PUERTO_LOCAL)) {
+//			while (true) {
+//				dgpPeticion = new DatagramPacket(buffer, buffer.length);
+//				dgs.receive(dgpPeticion);
+//				PUERTO_REMOTO = dgpPeticion.getPort();
+//				String ruta = StringUtils.standardUtf8(ArrayUtils.truncar(dgpPeticion.getData()));
+//
+//				FileSender fs = new FileSender(dgs, PUERTO_REMOTO, ruta);
+//
+//				fs.start();
+//
+//				try {
+//					fs.join();
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		} catch (SocketException e) {
+//			e.printStackTrace();
+//		} catch (UnknownHostException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }
