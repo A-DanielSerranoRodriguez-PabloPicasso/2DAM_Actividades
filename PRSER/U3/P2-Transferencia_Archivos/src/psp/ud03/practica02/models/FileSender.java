@@ -1,73 +1,56 @@
 package psp.ud03.practica02.models;
 
-import java.net.DatagramSocket;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.net.Socket;
 
 public class FileSender extends Thread {
 
-	private Socket tcpSocket;
-	private DatagramSocket dgs;
-	private int puerto;
-	private String ruta;
+	private Socket socket;
 
 	public FileSender(Socket socket) {
-		this.tcpSocket = socket;
+		this.socket = socket;
 	}
 
 	@Override
 	public void run() {
-		
-		
-//		DatagramPacket dgpRespuesta;
-//		byte[] buffer = new byte[1024];
-//		File archivo = new File(ruta);
-//		String respuesta;
-//		boolean exists = archivo.exists();
-//		BufferedInputStream bis = null;
-//
-//		try {
-//			dgs.connect(InetAddress.getLocalHost(), puerto);
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//		}
-//
-//		if (exists) {
-//			respuesta = "OK";
-//		} else {
-//			respuesta = "ERR";
-//		}
-//
-//		buffer = respuesta.getBytes();
-//		dgpRespuesta = new DatagramPacket(buffer, buffer.length);
-//
-//		try {
-//			dgs.send(dgpRespuesta);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//		if (exists) {
-//			try {
-//				bis = new BufferedInputStream(new FileInputStream(archivo));
-//			} catch (FileNotFoundException e) {
-//				e.printStackTrace();
-//			}
-//
-//			try {
-//				buffer = bis.readAllBytes();
-//				bis.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//
-//			dgpRespuesta = new DatagramPacket(buffer, buffer.length);
-//
-//			try {
-//				dgs.send(dgpRespuesta);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		BufferedInputStream bis;
+		BufferedOutputStream bos;
+		BufferedReader br;
+		BufferedWriter bw;
+		String ruta;
+		byte[] buffer;
+		int size;
+
+		try {
+			bis = new BufferedInputStream(socket.getInputStream());
+			bos = new BufferedOutputStream(socket.getOutputStream());
+			size = bis.read();
+			buffer = new byte[size];
+			int i = 0;
+
+			while (i < size) {
+				buffer[i] = (byte) bis.read();
+				i++;
+			}
+
+			bos.write(buffer);
+			bos.flush();
+//			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+//			ruta = new String(br.readLine());
+//			System.out.println(ruta);
+//			ruta = new String(br.readLine());
+//			System.out.println(ruta);
+//			bw.write(ruta);
+//			bw.flush();
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
