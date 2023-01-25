@@ -27,6 +27,7 @@ public class SistemaSeguridadHotp implements SistemaSeguridad {
 
 	@Override
 	public Usuario autentica() {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		String texto;
 

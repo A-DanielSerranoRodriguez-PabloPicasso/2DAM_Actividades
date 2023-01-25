@@ -61,7 +61,7 @@ public class MainFileClientApp {
 					bos = new BufferedOutputStream(
 							new FileOutputStream(new File(DIRECTORIO_DEFECTO + separador + nombreArchivo)));
 
-					buffer = new byte[99999];
+					buffer = new byte[1024];
 					dgpRespuesta = new DatagramPacket(buffer, buffer.length);
 					dgs.receive(dgpRespuesta);
 

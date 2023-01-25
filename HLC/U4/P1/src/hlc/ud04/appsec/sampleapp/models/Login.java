@@ -5,7 +5,6 @@ import hlc.ud04.appsec.sampleapp.auth.otp.GeneradorHOTP;
 public class Login {
 	private String numeroCuenta;
 	private String secreto;
-	private String secretoHotp;
 
 	public Login(String numeroCuenta, String secreto) {
 		this.numeroCuenta = numeroCuenta;
@@ -21,7 +20,7 @@ public class Login {
 	}
 
 	public String getSecretoHotp() {
-		String generado = new GeneradorHOTP().genera(secreto, 30);
+		String generado = new GeneradorHOTP().genera(secreto, (System.currentTimeMillis() / 1000) / 30);
 		return generado;
 	}
 
