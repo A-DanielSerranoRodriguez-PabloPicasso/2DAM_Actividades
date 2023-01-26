@@ -1,4 +1,4 @@
-package hlc.ud04.appsec.sampleapp.models;
+package hlc.ud04.appsec.sampleapp.models.HOTP;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,27 +8,28 @@ import java.sql.Statement;
 
 import hlc.ud04.appsec.core.GestorPersistenciaException;
 
-public class PersistenciaLogin implements GestorLogin {
+public class PersistenciaLoginHOTP implements GestorLoginHOTP {
 
 	private static final String JDBC_PREFIX = "jdbc:sqlite:";
 
 	private String database;
 
-	public PersistenciaLogin(String database) {
+	public PersistenciaLoginHOTP(String database) {
 		this.database = database;
 	}
 
 	@Override
-	public Login getLogin(String numeroCuenta) {
+	public LoginHOTP getLogin(String usuario) {
 		// Conexión (hay que crearla aqui para poderla usar en finaly)
 		Connection conn = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
 			Statement statement = conn.createStatement();
-			rs = statement.executeQuery("select id, secreto from login where id = '" + numeroCuenta + "'");
+			System.out.println(usuario);
+			rs = statement.executeQuery("select id, usuario, secreto from loginhotp where usuario = '" + usuario + "'");
 			rs.next();
-			Login login = new Login(rs.getString(1), rs.getString(2));
+			LoginHOTP login = new LoginHOTP(rs.getInt(1), rs.getString(2), rs.getString(3));
 			return login;
 		} catch (SQLException e) {
 			// Si hay excepción, la cambia por una nuestra
