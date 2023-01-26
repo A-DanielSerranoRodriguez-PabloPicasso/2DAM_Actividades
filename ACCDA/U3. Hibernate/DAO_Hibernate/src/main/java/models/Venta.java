@@ -1,5 +1,5 @@
 package models;
-// Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final
+// Generated 25 ene 2023 9:47:57 by Hibernate Tools 5.5.9.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Venta implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private Usuario usuario;
 	private Set proposicions = new HashSet(0);
 	private Set registroventases = new HashSet(0);
@@ -17,22 +17,17 @@ public class Venta implements java.io.Serializable {
 	public Venta() {
 	}
 
-	public Venta(int id) {
-		this.id = id;
-	}
-
-	public Venta(int id, Usuario usuario, Set proposicions, Set registroventases) {
-		this.id = id;
+	public Venta(Usuario usuario, Set proposicions, Set registroventases) {
 		this.usuario = usuario;
 		this.proposicions = proposicions;
 		this.registroventases = registroventases;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

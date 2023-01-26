@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 ene 2023 9:47:57 by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class catalog="concesionario" name="models.Cliente" optimistic-lock="none" table="cliente">
-        <id name="id" type="int">
+        <id name="id" type="java.lang.Integer">
             <column name="Id"/>
-            <generator class="assigned"/>
+            <generator class="identity"/>
         </id>
         <property name="nif" type="string">
             <column length="9" name="NIF" not-null="true" unique="true"/>
@@ -24,7 +24,7 @@
         <property name="direccion" type="string">
             <column length="40" name="Direccion"/>
         </property>
-        <set fetch="select" inverse="false" lazy="true" name="vehiculos" table="clietnevehiculo">
+        <set fetch="select" inverse="false" lazy="true" name="vehiculos" table="clientevehiculo">
             <key>
                 <column name="idCliente" not-null="true"/>
             </key>

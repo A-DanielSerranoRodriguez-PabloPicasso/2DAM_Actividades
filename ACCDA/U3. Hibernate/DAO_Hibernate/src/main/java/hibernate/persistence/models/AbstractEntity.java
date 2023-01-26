@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 public abstract class AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Transient
-	public abstract Long getId();
+	public abstract int getId();
 
 }

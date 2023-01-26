@@ -1,5 +1,5 @@
 package models;
-// Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final
+// Generated 25 ene 2023 9:47:57 by Hibernate Tools 5.5.9.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Usuario implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private String nombre;
 	private String apellidos;
 	private String nif;
@@ -17,18 +17,14 @@ public class Usuario implements java.io.Serializable {
 	private String telefono;
 	private String contrasena;
 	private Set ventas = new HashSet(0);
+	private Set mecanicos = new HashSet(0);
 	private Set jefes = new HashSet(0);
 
 	public Usuario() {
 	}
 
-	public Usuario(int id) {
-		this.id = id;
-	}
-
-	public Usuario(int id, String nombre, String apellidos, String nif, String correo, String telefono,
-			String contrasena, Set ventas, Set jefes) {
-		this.id = id;
+	public Usuario(String nombre, String apellidos, String nif, String correo, String telefono, String contrasena,
+			Set ventas, Set mecanicos, Set jefes) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.nif = nif;
@@ -36,14 +32,15 @@ public class Usuario implements java.io.Serializable {
 		this.telefono = telefono;
 		this.contrasena = contrasena;
 		this.ventas = ventas;
+		this.mecanicos = mecanicos;
 		this.jefes = jefes;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -101,6 +98,14 @@ public class Usuario implements java.io.Serializable {
 
 	public void setVentas(Set ventas) {
 		this.ventas = ventas;
+	}
+
+	public Set getMecanicos() {
+		return this.mecanicos;
+	}
+
+	public void setMecanicos(Set mecanicos) {
+		this.mecanicos = mecanicos;
 	}
 
 	public Set getJefes() {

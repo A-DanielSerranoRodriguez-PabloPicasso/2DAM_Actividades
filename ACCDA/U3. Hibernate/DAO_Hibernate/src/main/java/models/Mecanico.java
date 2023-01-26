@@ -1,5 +1,5 @@
 package models;
-// Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final
+// Generated 25 ene 2023 9:47:57 by Hibernate Tools 5.5.9.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +9,8 @@ import java.util.Set;
  */
 public class Mecanico implements java.io.Serializable {
 
-	private int id;
-	private Integer codUsuario;
+	private Integer id;
+	private Usuario usuario;
 	private String especialidad;
 	private Boolean esJefe;
 	private Set reparas = new HashSet(0);
@@ -18,32 +18,27 @@ public class Mecanico implements java.io.Serializable {
 	public Mecanico() {
 	}
 
-	public Mecanico(int id) {
-		this.id = id;
-	}
-
-	public Mecanico(int id, Integer codUsuario, String especialidad, Boolean esJefe, Set reparas) {
-		this.id = id;
-		this.codUsuario = codUsuario;
+	public Mecanico(Usuario usuario, String especialidad, Boolean esJefe, Set reparas) {
+		this.usuario = usuario;
 		this.especialidad = especialidad;
 		this.esJefe = esJefe;
 		this.reparas = reparas;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Integer getCodUsuario() {
-		return this.codUsuario;
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
-	public void setCodUsuario(Integer codUsuario) {
-		this.codUsuario = codUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getEspecialidad() {

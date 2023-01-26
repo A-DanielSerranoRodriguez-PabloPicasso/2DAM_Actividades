@@ -10,7 +10,7 @@ public interface CommonDaoI<T> {
 
 	public void delete(final T param);
 
-	public T searchById(final Long id);
+	public T searchById(final int id);
 
 	public List<T> searchAll();
 

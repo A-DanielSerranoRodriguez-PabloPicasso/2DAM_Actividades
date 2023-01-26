@@ -1,5 +1,5 @@
 package models;
-// Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final
+// Generated 25 ene 2023 9:47:57 by Hibernate Tools 5.5.9.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Concesionario implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private String nombre;
 	private String direccion;
 	private String contacto;
@@ -18,23 +18,18 @@ public class Concesionario implements java.io.Serializable {
 	public Concesionario() {
 	}
 
-	public Concesionario(int id) {
-		this.id = id;
-	}
-
-	public Concesionario(int id, String nombre, String direccion, String contacto, Set vehiculos) {
-		this.id = id;
+	public Concesionario(String nombre, String direccion, String contacto, Set vehiculos) {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.contacto = contacto;
 		this.vehiculos = vehiculos;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

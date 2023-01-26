@@ -1,5 +1,5 @@
 package models;
-// Generated 13 ene 2023 9:28:56 by Hibernate Tools 5.5.9.Final
+// Generated 25 ene 2023 9:47:57 by Hibernate Tools 5.5.9.Final
 
 import java.util.Date;
 
@@ -16,6 +16,7 @@ public class Repara implements java.io.Serializable {
 	private Date fechaLimite;
 	private String piezas;
 	private String diagnostico;
+	private Boolean finalizada;
 
 	public Repara() {
 	}
@@ -27,7 +28,7 @@ public class Repara implements java.io.Serializable {
 	}
 
 	public Repara(ReparaId id, Mecanico mecanico, Vehiculo vehiculo, Double presupuesto, Integer tiempoEstimado,
-			Date fechaLimite, String piezas, String diagnostico) {
+			Date fechaLimite, String piezas, String diagnostico, Boolean finalizada) {
 		this.id = id;
 		this.mecanico = mecanico;
 		this.vehiculo = vehiculo;
@@ -36,6 +37,7 @@ public class Repara implements java.io.Serializable {
 		this.fechaLimite = fechaLimite;
 		this.piezas = piezas;
 		this.diagnostico = diagnostico;
+		this.finalizada = finalizada;
 	}
 
 	public ReparaId getId() {
@@ -100,6 +102,14 @@ public class Repara implements java.io.Serializable {
 
 	public void setDiagnostico(String diagnostico) {
 		this.diagnostico = diagnostico;
+	}
+
+	public Boolean getFinalizada() {
+		return this.finalizada;
+	}
+
+	public void setFinalizada(Boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 
 }

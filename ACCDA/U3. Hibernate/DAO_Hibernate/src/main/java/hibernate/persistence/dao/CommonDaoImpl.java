@@ -50,7 +50,7 @@ public abstract class CommonDaoImpl<T extends AbstractEntity> implements CommonD
 		transaction.commit();
 	}
 
-	public T searchById(final Long id) {
+	public T searchById(final int id) {
 		beginTransacction();
 
 		return (T) session.get(entityClass.getName(), id);
