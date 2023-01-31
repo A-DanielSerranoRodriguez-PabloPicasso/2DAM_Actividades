@@ -2,16 +2,15 @@ package psp.ud03.practica02;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+
+import psp.ud03.practica02.utils.StringUtils;
 
 public class MainFileClientApp {
 	private static final int PUERTO_REMOTO = 4321;
@@ -19,15 +18,13 @@ public class MainFileClientApp {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		File directorio = new File(DIRECTORIO_DEFECTO);
+		File archivo = new File(DIRECTORIO_DEFECTO);
 		Socket socket;
-		BufferedReader br;
-		BufferedWriter bw;
 		String mensaje, respuesta;
 		byte[] buffer;
 
-		if (!directorio.exists())
-			directorio.mkdirs();
+		if (!archivo.exists())
+			archivo.mkdirs();
 
 		System.out.println("Introduce la ruta absoluta de un archivo del servidor:");
 		mensaje = sc.nextLine();
@@ -38,25 +35,40 @@ public class MainFileClientApp {
 				socket = new Socket(InetAddress.getLocalHost(), PUERTO_REMOTO);
 				BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
 				BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-//				bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-//				br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//				bw.write(mensaje);
-//				bw.newLine();
-//				bw.flush();
 				bos.write(buffer.length);
+				System.out.println(buffer.length);
 				bos.write(buffer);
 				bos.flush();
 
-//				socket.shutdownOutput();
+				int i = 0, size = bis.read();
+				buffer = new byte[size];
+				while (i < size) {
+					buffer[i] = (byte) bis.read();
+					i++;
+				}
 
-				respuesta = new String(bis.readAllBytes());
+				respuesta = StringUtils.standardUtf8(buffer);
 
 				System.out.println(respuesta);
-
-//				bw.write("amongus");
-//				bw.newLine();
-//				bw.flush();
-//				respuesta = br.readLine();
+				if (respuesta.equals("EXISTE")) {
+					System.out.println("Importando");
+					String[] partes = mensaje.split("/");
+					String nombre = partes[partes.length - 1];
+					archivo = new File(DIRECTORIO_DEFECTO + "/" + nombre);
+					i = 0;
+					size = bis.read();
+					System.out.println(size);
+					System.out.println();
+					buffer = new byte[size];
+					while (i < size) {
+						buffer[i] = (byte) bis.read();
+						System.out.println(buffer[i]);
+						i++;
+					}
+					bos = new BufferedOutputStream(new FileOutputStream(archivo));
+					bos.write(buffer);
+					bos.flush();
+				}
 
 				socket.close();
 			} catch (UnknownHostException e1) {
