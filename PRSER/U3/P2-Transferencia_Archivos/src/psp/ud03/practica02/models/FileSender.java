@@ -1,13 +1,12 @@
 package psp.ud03.practica02.models;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
-
-import psp.ud03.practica02.utils.StringUtils;
 
 public class FileSender extends Thread {
 
@@ -19,47 +18,35 @@ public class FileSender extends Thread {
 
 	@Override
 	public void run() {
-		BufferedInputStream bis;
-		BufferedOutputStream bos;
-		String ruta, respuesta;
+		DataInputStream bis;
+		DataOutputStream bos;
+		String ruta = "", respuesta;
 		File archivo;
-		byte[] buffer;
-		int size;
+		byte[] buffer = new byte[0];
 
 		try {
-			bis = new BufferedInputStream(socket.getInputStream());
-			bos = new BufferedOutputStream(socket.getOutputStream());
-			size = bis.read();
-			System.out.println(size);
-			buffer = new byte[size];
-			int i = 0;
+			bis = new DataInputStream(socket.getInputStream());
+			bos = new DataOutputStream(socket.getOutputStream());
 
-			while (i < size) {
-				buffer[i] = (byte) bis.read();
-				i++;
+			try {
+				ruta = bis.readUTF();
+			} catch (EOFException e) {
 			}
-
-			ruta = StringUtils.standardUtf8(buffer);
 			archivo = new File(ruta);
 
 			if (archivo.exists()) {
 				respuesta = "EXISTE";
-				buffer = respuesta.getBytes();
+				bos.writeUTF(respuesta);
+				bos.flush();
 
-				bos.write(buffer.length);
-				bos.write(buffer);
-
-				bis = new BufferedInputStream(new FileInputStream(archivo));
+				bis = new DataInputStream(new FileInputStream(archivo));
 				buffer = bis.readAllBytes();
-				System.out.println(buffer.length);
-				bos.write(buffer.length);
 				bos.write(buffer);
+				bos.flush();
 			} else {
 				respuesta = "ERR";
-				buffer = respuesta.getBytes();
 
-				bos.write(buffer.length);
-				bos.write(buffer);
+				bos.writeUTF(respuesta);
 			}
 
 			bos.flush();
