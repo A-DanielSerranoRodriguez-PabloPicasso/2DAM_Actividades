@@ -39,13 +39,23 @@ public class MainFileClientApp {
 				dos.writeUTF(mensaje);
 				dos.flush();
 
+				int respuestaLenght = 0, paquetes = 0, listSize = 0;
+
 				try {
-					respuesta = dis.readUTF();
+					respuestaLenght = dis.readInt();
+					paquetes = dis.readInt();
+					listSize = dis.readInt();
 				} catch (EOFException e) {
 				}
 
-				System.out.println(respuesta);
-				if (respuesta.equals("EXISTE")) {
+				buffer = new byte[respuestaLenght];
+				for (int i = 0; i < respuestaLenght; i++) {
+					buffer[i] = (byte) dis.read();
+				}
+				respuesta = new String(buffer);
+
+				System.out.print(respuesta);
+				if (respuesta.equals("OK\n\r")) {
 					String[] partes = mensaje.split("/");
 					String nombre = partes[partes.length - 1];
 					archivo = new File(DIRECTORIO_DEFECTO + "/" + nombre);
@@ -53,11 +63,16 @@ public class MainFileClientApp {
 
 					System.out.println("Importando");
 
-					int paquetes = dis.readInt();
 					for (int i = 0; i < paquetes; i++) {
-						buffer = new byte[dis.readInt()];
-						dis.readFully(buffer);
+						buffer = new byte[listSize];
+						System.out.println(buffer.length);
+						try {
+							dis.readFully(buffer);
+						} catch (EOFException e) {
+						}
 						dos.write(buffer);
+						if (i != paquetes - 1)
+							listSize = dis.readInt();
 					}
 
 					dos.flush();
