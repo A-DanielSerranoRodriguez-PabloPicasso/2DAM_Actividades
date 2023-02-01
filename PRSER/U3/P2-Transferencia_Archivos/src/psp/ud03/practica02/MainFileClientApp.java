@@ -16,10 +16,12 @@ public class MainFileClientApp {
 	private static final String DIRECTORIO_DEFECTO = "archivo";
 
 	public static void main(String[] args) {
+		DataOutputStream dos;
+		DataInputStream dis;
 		Scanner sc = new Scanner(System.in);
 		File archivo = new File(DIRECTORIO_DEFECTO);
 		Socket socket;
-		String mensaje, respuesta="";
+		String mensaje, respuesta = "";
 		byte[] buffer;
 
 		if (!archivo.exists())
@@ -32,28 +34,35 @@ public class MainFileClientApp {
 			buffer = mensaje.getBytes();
 			try {
 				socket = new Socket(InetAddress.getLocalHost(), PUERTO_REMOTO);
-				DataOutputStream bos = new DataOutputStream(socket.getOutputStream());
-				DataInputStream bis = new DataInputStream(socket.getInputStream());
-				bos.writeUTF(mensaje);
-				bos.flush();
-				
+				dos = new DataOutputStream(socket.getOutputStream());
+				dis = new DataInputStream(socket.getInputStream());
+				dos.writeUTF(mensaje);
+				dos.flush();
+
 				try {
-					respuesta = bis.readUTF();
+					respuesta = dis.readUTF();
 				} catch (EOFException e) {
 				}
 
 				System.out.println(respuesta);
 				if (respuesta.equals("EXISTE")) {
-					System.out.println("Importando");
 					String[] partes = mensaje.split("/");
 					String nombre = partes[partes.length - 1];
 					archivo = new File(DIRECTORIO_DEFECTO + "/" + nombre);
-					
-					buffer = bis.readAllBytes();
-					
-					bos = new DataOutputStream(new FileOutputStream(archivo));
-					bos.write(buffer);
-					bos.flush();
+					dos = new DataOutputStream(new FileOutputStream(archivo));
+
+					System.out.println("Importando");
+
+					int paquetes = dis.readInt();
+					for (int i = 0; i < paquetes; i++) {
+						buffer = new byte[dis.readInt()];
+						dis.readFully(buffer);
+						dos.write(buffer);
+					}
+
+					dos.flush();
+
+					System.out.println("Recibido");
 				}
 
 				socket.close();
