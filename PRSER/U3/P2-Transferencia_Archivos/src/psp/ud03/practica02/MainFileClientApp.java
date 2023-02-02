@@ -29,22 +29,32 @@ public class MainFileClientApp {
 
 		System.out.println("Introduce la ruta absoluta de un archivo del servidor:");
 		mensaje = sc.nextLine();
+		mensaje += "\n\r";
 
+		/*
+		 * Si el mensaje no esta vacio, comienza el proceso.
+		 * 
+		 * Antes de enviar los bytes, enviamos un entero que representa su tamanyo.
+		 * 
+		 * Antes de recibir los bytes, obtenemos el tamanyo de la respuesta, los
+		 * paquetes totales que vamos a recibir y el tamanyo del paqute a recibir.
+		 */
 		if (!mensaje.isEmpty()) {
 			buffer = mensaje.getBytes();
 			try {
 				socket = new Socket(InetAddress.getLocalHost(), PUERTO_REMOTO);
 				dos = new DataOutputStream(socket.getOutputStream());
 				dis = new DataInputStream(socket.getInputStream());
-				dos.writeUTF(mensaje);
+				dos.writeInt(buffer.length);
+				dos.write(buffer);
 				dos.flush();
 
-				int respuestaLenght = 0, paquetes = 0, listSize = 0;
+				int respuestaLenght = 0, paquetes = 0, paquteSize = 0;
 
 				try {
 					respuestaLenght = dis.readInt();
 					paquetes = dis.readInt();
-					listSize = dis.readInt();
+					paquteSize = dis.readInt();
 				} catch (EOFException e) {
 				}
 
@@ -54,30 +64,37 @@ public class MainFileClientApp {
 				}
 				respuesta = new String(buffer);
 
-				System.out.print(respuesta);
 				if (respuesta.equals("OK\n\r")) {
 					String[] partes = mensaje.split("/");
 					String nombre = partes[partes.length - 1];
 					archivo = new File(DIRECTORIO_DEFECTO + "/" + nombre);
 					dos = new DataOutputStream(new FileOutputStream(archivo));
 
-					System.out.println("Importando");
-
+					/*
+					 * Como la respuesta es correcta, leemos los paqutes y los escribimos en el
+					 * archivo correspondiente.
+					 */
 					for (int i = 0; i < paquetes; i++) {
-						buffer = new byte[listSize];
-						System.out.println(buffer.length);
+						if (i == 0)
+							buffer = new byte[paquteSize - respuestaLenght];
+						else
+							buffer = new byte[paquteSize];
+
 						try {
 							dis.readFully(buffer);
 						} catch (EOFException e) {
 						}
+
 						dos.write(buffer);
-						if (i != paquetes - 1)
-							listSize = dis.readInt();
+						try {
+							paquteSize = dis.readInt();
+						} catch (EOFException e) {
+						}
 					}
 
 					dos.flush();
-
-					System.out.println("Recibido");
+				} else {
+					System.out.println("Archivo no encontrado");
 				}
 
 				socket.close();
