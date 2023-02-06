@@ -1,7 +1,0 @@
-INDEX VERSION 1.131+C:\Users\alumnado\Documents\Actividades\HLC\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index
-3901424146.index
-3976220620.index
-2845928148.index
-934340039.index
-1904366504.index
