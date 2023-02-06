@@ -5,8 +5,13 @@ ct.upsell.display.after=1673783879054
 eclipse.preferences.version=1
 iconcolormode=primary
 includeThemingInOomph=false
+<<<<<<< HEAD
 last.download.attempt.time=1675700046542
 lastConfiguration=1675700029104
+=======
+last.download.attempt.time=1675425023708
+lastConfiguration=1675425014341
+>>>>>>> f3b50f27a5333b109cb4050eb5b721931e697ae8
 newinstall=false
 showWelcomeDialog=false
 workbench.theme=Dark Gray

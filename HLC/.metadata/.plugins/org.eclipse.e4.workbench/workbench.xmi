@@ -680,7 +680,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8a-iwJGJEe279flkf9afCQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_QLJ_oKY5Ee2I0eWwn987zw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_8R3FF5GJEe279flkf9afCQ"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_7ZAkMKO4Ee2WvvYyc0uhWw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_8R3FF5GJEe279flkf9afCQ"/>
+>>>>>>> f3b50f27a5333b109cb4050eb5b721931e697ae8
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8a-iwZGJEe279flkf9afCQ" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -711,10 +715,14 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8a_J1JGJEe279flkf9afCQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_QLL00KY5Ee2I0eWwn987zw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_8R3EmJGJEe279flkf9afCQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_RrVY8KY5Ee2I0eWwn987zw" elementId="org.eclipse.jdt.ui.CompilationUnitEditor" visible="false">
         <tags>Draggable</tags>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_7ZDAcKO4Ee2WvvYyc0uhWw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_8R3EmJGJEe279flkf9afCQ"/>
+>>>>>>> f3b50f27a5333b109cb4050eb5b721931e697ae8
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_8a_J1ZGJEe279flkf9afCQ" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
