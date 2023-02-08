@@ -1,0 +1,17 @@
+Para almacenar los permisos de la Parte 1 (control de acceso para la aplicación con autenticación por contraseña), se han creado 2 tablas:
+  - permisos
+  - passwdpermisos
+
+1. Permisos
+
+La tabla está compuesta de una clave primaria de texto, a la que se le hace un check para comprobar que sólo hay un máximo de 4 registros introducidos (rw, r, w, n). Cada registro representa un permiso:
+  - r: Lectura
+  - w: Escritura
+  - rw: Lectura y escritura
+  - n: Ninguno
+
+-----------------------------
+
+2. Passwdpermisos
+
+En esta tabla se introducen el uid del usuario que quiere iniciar sesión y el permiso que va a tener.
