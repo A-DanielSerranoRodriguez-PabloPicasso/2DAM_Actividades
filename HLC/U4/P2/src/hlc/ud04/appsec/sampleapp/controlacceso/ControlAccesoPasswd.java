@@ -23,26 +23,23 @@ public class ControlAccesoPasswd implements ControlAcceso {
 
 	private Map<String, Permisos> perms;
 	private static Permisos permisoUsuario;
-	private static boolean checked = false;
 
 	@Override
 	public boolean estaPermitido(Usuario usuario, Operacion operacion, Recurso recurso) {
-		if (!checked) {
+		if (permisoUsuario == null) {
 			setPerms();
 			GestorPasswdPermisos gpd = new PersistenciaPasswdPermisos("db/base.db");
 			PasswdPermisos ppUsuario = gpd.getUsuario(usuario.getUid());
 			String sPermiso = ppUsuario.getPermiso();
 			permisoUsuario = perms.get(sPermiso);
-			checked = true;
-		}
-
-		if (permisoUsuario != null)
+		} else {
 			if (permisoUsuario == Permisos.TODO)
 				return true;
 			else if (permisoUsuario == Permisos.ESCRITURA)
 				return permisoUsuario.name().equals(operacion.name());
 			else if (permisoUsuario == Permisos.LECTURA)
 				return permisoUsuario.name().equals(operacion.name());
+		}
 
 		return false;
 	}

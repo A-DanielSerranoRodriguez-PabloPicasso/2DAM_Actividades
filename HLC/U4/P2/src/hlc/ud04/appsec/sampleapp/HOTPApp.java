@@ -5,7 +5,7 @@ import hlc.ud04.appsec.core.GestorPersistencia;
 import hlc.ud04.appsec.interfaz.Interfaz;
 import hlc.ud04.appsec.interfaz.consola.InterfazConsola;
 import hlc.ud04.appsec.persistencia.GestorPersistenciaSqlite;
-import hlc.ud04.appsec.sampleapp.controlacceso.ControlAccesoSimple;
+import hlc.ud04.appsec.sampleapp.controlacceso.ControlAccesoHOTP;
 import hlc.ud04.appsec.sampleapp.hotp.auth.AutenticadorHOTP;
 import hlc.ud04.appsec.sampleapp.hotp.models.PersistenciaLoginHOTP;
 import hlc.ud04.appsec.sampleapp.hotp.seguridad.SistemaSeguridadHOTP;
@@ -22,7 +22,7 @@ public class HOTPApp {
 		// Y lo inyectamos en el core
 		Clientes clientes = new Clientes(gestor);
 		// Creamos interfaz de usuario de tipo consola
-		SistemaSeguridad sistemaSeguridad = new SistemaSeguridadHOTP(new AutenticadorHOTP(), new ControlAccesoSimple(),
+		SistemaSeguridad sistemaSeguridad = new SistemaSeguridadHOTP(new AutenticadorHOTP(), new ControlAccesoHOTP(),
 				new PersistenciaLoginHOTP(DATABASE_PATH));
 		Interfaz interfaz = new InterfazConsola(clientes, sistemaSeguridad);
 		// Lanzamos la interfaz de usuario
