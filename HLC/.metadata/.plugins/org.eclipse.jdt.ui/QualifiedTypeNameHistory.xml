@@ -42,4 +42,5 @@
     <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.controlacceso.ControlAccesoPasswd.Permisos"/>
     <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.controlacceso.ControlAccesoPasswd"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="hlc.ud04.appsec.sampleapp.controlacceso.ControlAccesoHOTP"/>
 </qualifiedTypeNameHistroy>
