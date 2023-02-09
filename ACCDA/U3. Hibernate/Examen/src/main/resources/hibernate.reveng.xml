@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="restaurante" match-name="empleado"/>
+  <table-filter match-catalog="restaurante" match-name="existencias"/>
+  <table-filter match-catalog="restaurante" match-name="localidad"/>
+  <table-filter match-catalog="restaurante" match-name="rest_empleado"/>
+  <table-filter match-catalog="restaurante" match-name="restaurante"/>
+  <table-filter match-catalog="restaurante" match-name="titular"/>
+</hibernate-reverse-engineering>
