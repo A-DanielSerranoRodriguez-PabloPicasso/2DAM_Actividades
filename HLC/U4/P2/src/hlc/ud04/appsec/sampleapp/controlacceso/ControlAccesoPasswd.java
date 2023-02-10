@@ -32,14 +32,14 @@ public class ControlAccesoPasswd implements ControlAcceso {
 			PasswdPermisos ppUsuario = gpd.getUsuario(usuario.getUid());
 			String sPermiso = ppUsuario.getPermiso();
 			permisoUsuario = perms.get(sPermiso);
-		} else {
-			if (permisoUsuario == Permisos.TODO)
-				return true;
-			else if (permisoUsuario == Permisos.ESCRITURA)
-				return permisoUsuario.name().equals(operacion.name());
-			else if (permisoUsuario == Permisos.LECTURA)
-				return permisoUsuario.name().equals(operacion.name());
 		}
+		
+		if (permisoUsuario == Permisos.TODO)
+			return true;
+		else if (permisoUsuario == Permisos.ESCRITURA)
+			return permisoUsuario.name().equals(operacion.name());
+		else if (permisoUsuario == Permisos.LECTURA)
+			return permisoUsuario.name().equals(operacion.name());
 
 		return false;
 	}

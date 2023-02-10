@@ -27,12 +27,11 @@ public class ControlAccesoHOTP implements ControlAcceso {
 	private static Permisos permisoUsuario;
 	private final String ARCHIVO_PERMISOS = "db/controlAccesoHOTP.txt";
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean estaPermitido(Usuario usuario, Operacion operacion, Recurso recurso) {
 		BufferedReader br;
 		File archivo = new File(ARCHIVO_PERMISOS);
-
-		System.out.println(archivo.exists());
 
 		if (!archivo.exists())
 			return false;
@@ -46,7 +45,6 @@ public class ControlAccesoHOTP implements ControlAcceso {
 					String[] partes = linea.split(":");
 
 					if (Long.parseLong(partes[0]) == usuario.getUid()) {
-						br.close();
 						if (partes.length > 1)
 							permisoUsuario = perms.get(partes[1]);
 						else
