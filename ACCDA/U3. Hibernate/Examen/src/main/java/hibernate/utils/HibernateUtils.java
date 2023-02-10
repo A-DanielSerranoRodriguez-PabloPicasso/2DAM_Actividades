@@ -9,6 +9,9 @@ public class HibernateUtils {
 	private static final SessionFactory SESSION_FACTORY;
 	private static Session SESSION;
 
+	/**
+	 * Crea un SessionFactory en cuanto se inicia el programa.
+	 */
 	static {
 		try {
 			SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
@@ -18,10 +21,21 @@ public class HibernateUtils {
 		}
 	}
 
+	/**
+	 * Devuelve el SessionFactory.
+	 * 
+	 * @return SessionFactory.
+	 */
 	public static SessionFactory getSessionFactory() {
 		return SESSION_FACTORY;
 	}
 
+	/**
+	 * Dependiendo del estado, crea o devuelve un Session. Si el Session no se ha
+	 * inicialiado antes, lo crea.
+	 * 
+	 * @return Session
+	 */
 	public static Session getSession() {
 		if (SESSION != null)
 			return SESSION;

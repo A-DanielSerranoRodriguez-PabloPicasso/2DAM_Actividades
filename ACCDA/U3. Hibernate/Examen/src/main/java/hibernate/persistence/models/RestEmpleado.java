@@ -11,12 +11,14 @@ public class RestEmpleado implements java.io.Serializable {
 	@EmbeddedId
 	private RestEmpleadoId id;
 
-	@JoinColumn(name = "dni_empleado")
+	@ManyToOne
+	@JoinColumn(name = "dni_empleado", nullable = false, insertable = false, updatable = false)
 	private Empleado empleado;
 
 	private String funcion;
 
-	@JoinColumn(name = "cod_rest")
+	@ManyToOne
+	@JoinColumn(name = "cod_rest", nullable = false, insertable = false, updatable = false)
 	private Restaurante restaurante;
 
 	public RestEmpleado() {

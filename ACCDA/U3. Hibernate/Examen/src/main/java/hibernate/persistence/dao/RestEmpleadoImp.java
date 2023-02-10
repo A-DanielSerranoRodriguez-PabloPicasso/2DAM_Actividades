@@ -11,4 +11,9 @@ public class RestEmpleadoImp extends CommonDaoImpl<RestEmpleado> implements Rest
 		super(session);
 	}
 
+	@Override
+	public RestEmpleado searchByEmpleadoDni(String dni) {
+		return searchByIdentifier("dni_empleado", false, dni);
+	}
+
 }

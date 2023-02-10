@@ -11,23 +11,36 @@ import hibernate.persistence.CommonDao;
 public class CommonDaoImpl<T> implements CommonDao<T> {
 
 	private Class<T> entityClass;
-	public Session session;
+	protected Session session;
 	private Transaction transaction;
 
 	@SuppressWarnings("unchecked")
 	protected CommonDaoImpl(Session session) {
+		/*
+		 * Obtiene la clase a usar.
+		 * 
+		 * Primero, tenemos que llamar a la propia clase y conseguirla. Despues, obtiene
+		 * su superclase generica. Para obtener la clase que usamos en si, obtenemos el
+		 * primer argumento de tipo.
+		 */
 		entityClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass())
 				.getActualTypeArguments()[0];
 		this.session = session;
 		transaction = this.session.getTransaction();
 	}
 
-	public void beginTransaction() {
+	/**
+	 * Comienza una transaccion en la base de datos
+	 */
+	private void beginTransaction() {
 		if (!transaction.isActive())
 			transaction.begin();
 	}
 
-	public void endTransaction() {
+	/**
+	 * Finaliza una transaccion en la base de datos
+	 */
+	private void endTransaction() {
 		session.flush();
 
 		if (transaction.isActive())
@@ -63,10 +76,10 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T searchByIdentifier(String identifier, boolean numeric, Object id) {
+	public T searchByIdentifier(String atributo, boolean numeric, Object id) {
 		List<T> list;
 		T object = null;
-		String query = "from " + entityClass.getName() + " where " + identifier + " = ";
+		String query = "from " + entityClass.getName() + " where " + atributo + " = ";
 
 		if (numeric)
 			query += id;

@@ -15,4 +15,9 @@ public class LocalidadDaoImpl extends CommonDaoImpl<Localidad> implements Locali
 		return searchByIdentifier("cod_localidad", true, cod);
 	}
 
+	@Override
+	public Localidad searchByNombre(String nombre) {
+		return searchByIdentifier("nombre", false, nombre);
+	}
+
 }

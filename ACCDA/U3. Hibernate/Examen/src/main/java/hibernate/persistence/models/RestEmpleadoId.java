@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RestEmpleadoId implements java.io.Serializable {
 
-	@Column(name = "code_rest")
+	@Column(name = "cod_rest")
 	private String codRest;
 
 	@Column(name = "dni_empleado")
