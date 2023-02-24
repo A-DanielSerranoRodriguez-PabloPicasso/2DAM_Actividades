@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Modelos -->
+        <record model="ir.module.category" id="mis_series.module_category_mis_series">
+            <field name="name">Mis series</field>
+            <field name="description">Gestiona la biblioteca de series</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!-- Usuarios -->
+        <record model="res.groups" id="group_mis_series_admin">
+            <field name="name">SeriesAdmin</field>
+            <field name="category_id" ref="mis_series.module_category_mis_series"></field>
+            <field name="comment">Administradores de la biblioteca</field>
+        </record>
+
+        <record model="res.groups" id="group_mis_series_user">
+            <field name="name">SeriesUser</field>
+            <field name="category_id" ref="mis_series.module_category_mis_series"></field>
+            <field name="comment">Usuarios de la biblioteca</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mis_series_x_serie_series_admin,mis_series.x_serie.series_admin,model_mis_series_x_serie,mis_series.group_mis_series_admin,1,1,1,1
+access_mis_series_x_genero_series_admin,mis_series.x_genero.series_admin,model_mis_series_x_genero,mis_series.group_mis_series_admin,1,1,1,1
+access_mis_series_x_serie_series_user,mis_series.x_serie.series_user,model_mis_series_x_serie,mis_series.group_mis_series_user,1,0,0,0
+access_mis_series_x_genero_series_user,mis_series.x_genero.series_user,model_mis_series_x_genero,mis_series.group_mis_series_user,0,0,0,0

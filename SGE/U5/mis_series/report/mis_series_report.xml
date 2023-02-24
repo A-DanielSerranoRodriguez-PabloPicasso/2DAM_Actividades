@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mis_series.x_serie_report" model="ir.actions.report">
+        <field name="name">Informe</field>
+        <field name="model">mis_series.x_serie</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mis_series.report_mis_series_view</field>
+        <field name="report_file">mis_series.report_mis_series</field>
+        <field name="binding_model_id" ref="model_mis_series_x_serie"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_mis_series_view">
+        <t t-foreach="docs" t-as="x_serie">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>
+                            <span t-field="x_serie.x_name"/>
+                        </h1>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th><h5>Género</h5></th>
+                                    <th><h5>Director</h5></th>
+                                    <th><h5>Nota</h5></th>
+                                    <th><h5>Industria</h5></th>
+                                    <th><h5>Fecha</h5></th>
+                                    <th><h5>Duración</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span t-field="x_serie.x_genero"/></td>
+                                    <td><span t-field="x_serie.x_director"/></td>
+                                    <td><span t-field="x_serie.x_nota"/></td>
+                                    <td><span t-field="x_serie.x_industria"/></td>
+                                    <td><span t-field="x_serie.x_fecha"/></td>
+                                    <td><span t-field="x_serie.x_duracion"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
